@@ -11,10 +11,10 @@
   "quoteProps": "as-needed",
   "requirePragma": false,
   "semi": true,
-  "singleQuote": true,
+  "singleQuote": false,
   "tabWidth": 2,
   "trailingComma": "es5",
-  "useTabs": false,
+  "useTabs": true,
   "vueIndentScriptAndStyle": false,
   "filepath": "d:\\Documents\\Shared\\Coding\\full_stack_projects\\book_finder\\.eslintrc.json"
 }
