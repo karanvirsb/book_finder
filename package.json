@@ -7,6 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
+		"generate": "graphql-codegen",
 		"test": "vitest watch --ui",
 		"coverage": "vitest run --coverage"
 	},
@@ -45,6 +46,7 @@
 		"eslint-plugin-n": "^15.0.0",
 		"eslint-plugin-promise": "^6.0.0",
 		"eslint-plugin-react": "^7.32.2",
+		"graphql-codegen": "^0.4.0",
 		"jsdom": "^21.1.0",
 		"postcss": "^8.4.21",
 		"prettier": "^2.8.3",
