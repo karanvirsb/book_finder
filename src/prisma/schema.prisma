@@ -9,3 +9,23 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Books {
+  asin               String   @id
+  ISBN10             String
+  author_id          Int
+  currency           String
+  description        String
+  final_price        Decimal
+  format             Json
+  image_url          String
+  images_count       Int
+  item_weight        String
+  product_dimensions String
+  rating             String
+  reviews_count      Int
+  publisher_id       Int
+  title              String
+  url                String
+  categories         String[]
+}
