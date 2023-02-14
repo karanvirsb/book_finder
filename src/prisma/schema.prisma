@@ -17,7 +17,7 @@ model Books {
   author             Author    @relation(fields: [author_id], references: [id])
   currency           String
   description        String
-  final_price        Decimal
+  final_price        Decimal?
   format             Json
   image_url          String
   images_count       Int
