@@ -37,11 +37,13 @@ async function addPublishers(): Promise<Prisma.BatchPayload> {
 	return createdPublishers;
 }
 
-async function addBooks(): Promise<void> {
-	for (const book of books) {
-		await prisma.books.create({
-			data: book,
-			include: { author: true, publisher: true },
-		});
-	}
+async function addBooks(): Promise<Prisma.BatchPayload> {
+	// for (const book of books) {
+	// 	await prisma.books.create({
+	// 		data: book,
+	// 		include: { author: true, publisher: true },
+	// 	});
+	// }
+
+	return await prisma.books.createMany({ data: books, skipDuplicates: true });
 }
