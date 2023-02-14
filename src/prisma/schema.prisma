@@ -14,6 +14,7 @@ model Books {
   asin               String   @id
   ISBN10             String
   author_id          Int
+  author             Author   @relation(fields: [author_id], references: [id])
   currency           String
   description        String
   final_price        Decimal
@@ -31,9 +32,10 @@ model Books {
 }
 
 model Author {
-  id    Int    @id @default(autoincrement())
+  id    Int     @id @default(autoincrement())
   name  String
   email String
+  Books Books[]
 }
 
 model Publisher {
