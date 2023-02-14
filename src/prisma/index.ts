@@ -1,6 +1,6 @@
 import { type Prisma, PrismaClient } from "@prisma/client";
 import authors from "../model/authors.json" assert { type: "json" };
-import books from "../model/books.json";
+import books from "../model/books.json" assert { "type": "json" };
 import publishers from "../model/publisher.json" assert { type: "json" };
 const prisma = new PrismaClient();
 
@@ -9,6 +9,7 @@ export default prisma;
 async function main(): Promise<void> {
 	console.log(await addAuthors());
 	console.log(await addPublishers());
+	await addBooks();
 }
 
 main()
@@ -34,4 +35,13 @@ async function addPublishers(): Promise<Prisma.BatchPayload> {
 		skipDuplicates: true,
 	});
 	return createdPublishers;
+}
+
+async function addBooks(): Promise<void> {
+	for (const book of books) {
+		await prisma.books.create({
+			data: book,
+			include: { author: true, publisher: true },
+		});
+	}
 }
