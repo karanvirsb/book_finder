@@ -1,0 +1,464 @@
+[
+  {
+    "id": 1,
+    "name": "Amazon",
+    "email": "Amazon@gmai.com",
+    "phone": "771-401-3947"
+  },
+  {
+    "id": 2,
+    "name": "Blessed Book",
+    "email": "BlessedBook@gmai.com",
+    "phone": "468-915-9081"
+  },
+  {
+    "id": 3,
+    "name": "Open Books",
+    "email": "OpenBooks@gmai.com",
+    "phone": "719-175-6096"
+  },
+  {
+    "id": 4,
+    "name": "Alex BooksandMore",
+    "email": "AlexBooksandMore@gmai.com",
+    "phone": "658-450-0234"
+  },
+  {
+    "id": 5,
+    "name": "Goodwill Industries of Southern Nevada",
+    "email": "GoodwillIndustriesofSouthernNevada@gmai.com",
+    "phone": "840-646-5311"
+  },
+  {
+    "id": 6,
+    "name": "James River Sales, LLC",
+    "email": "JamesRiverSales,LLC@gmai.com",
+    "phone": "722-155-5165"
+  },
+  {
+    "id": 7,
+    "name": "Amazon Warehouse",
+    "email": "AmazonWarehouse@gmai.com",
+    "phone": "948-737-2972"
+  },
+  {
+    "id": 8,
+    "name": "Retaliation Resale",
+    "email": "RetaliationResale@gmai.com",
+    "phone": "888-221-9704"
+  },
+  {
+    "id": 9,
+    "name": "Rich Media Direct",
+    "email": "RichMediaDirect@gmai.com",
+    "phone": "899-332-5848"
+  },
+  {
+    "id": 10,
+    "name": "California Book Bag",
+    "email": "CaliforniaBookBag@gmai.com",
+    "phone": "393-815-2532"
+  },
+  {
+    "id": 11,
+    "name": "Jenson Books Inc",
+    "email": "JensonBooksInc@gmai.com",
+    "phone": "807-131-8526"
+  },
+  {
+    "id": 12,
+    "name": "Vivé Liber Books LLC",
+    "email": "VivéLiberBooksLLC@gmai.com",
+    "phone": "133-736-9104"
+  },
+  {
+    "id": 13,
+    "name": "Luxifi",
+    "email": "Luxifi@gmai.com",
+    "phone": "201-947-8295"
+  },
+  {
+    "id": 14,
+    "name": "ZBK Books",
+    "email": "ZBKBooks@gmai.com",
+    "phone": "161-746-6715"
+  },
+  {
+    "id": 15,
+    "name": "FindAnyBook",
+    "email": "FindAnyBook@gmai.com",
+    "phone": "202-543-9488"
+  },
+  {
+    "id": 16,
+    "name": "AJ's Pop-up Shop",
+    "email": "AJ'sPop-upShop@gmai.com",
+    "phone": "844-537-5152"
+  },
+  {
+    "id": 17,
+    "name": "gatecitybooks",
+    "email": "gatecitybooks@gmai.com",
+    "phone": "258-214-8300"
+  },
+  {
+    "id": 18,
+    "name": "Valleys Books & More",
+    "email": "ValleysBooks&More@gmai.com",
+    "phone": "748-634-0368"
+  },
+  {
+    "id": 19,
+    "name": "Seattlegoodwill",
+    "email": "Seattlegoodwill@gmai.com",
+    "phone": "548-852-7632"
+  },
+  {
+    "id": 20,
+    "name": "Prime 1 Books",
+    "email": "Prime1Books@gmai.com",
+    "phone": "132-203-1726"
+  },
+  {
+    "id": 21,
+    "name": "Missouri_Goodwill_Industries",
+    "email": "Missouri_Goodwill_Industries@gmai.com",
+    "phone": "310-549-6158"
+  },
+  {
+    "id": 22,
+    "name": "Goodwill of North Georgia",
+    "email": "GoodwillofNorthGeorgia@gmai.com",
+    "phone": "937-537-0128"
+  },
+  {
+    "id": 23,
+    "name": "desert18",
+    "email": "desert18@gmai.com",
+    "phone": "860-709-2356"
+  },
+  {
+    "id": 24,
+    "name": "-OnTimeBooks-",
+    "email": "-OnTimeBooks-@gmai.com",
+    "phone": "605-978-2383"
+  },
+  {
+    "id": 25,
+    "name": "YHHWORLDREAD",
+    "email": "YHHWORLDREAD@gmai.com",
+    "phone": "496-906-6779"
+  },
+  {
+    "id": 26,
+    "name": "HarryBat",
+    "email": "HarryBat@gmai.com",
+    "phone": "958-703-7877"
+  },
+  {
+    "id": 27,
+    "name": "Momma's Media",
+    "email": "Momma'sMedia@gmai.com",
+    "phone": "994-320-3775"
+  },
+  {
+    "id": 28,
+    "name": "TIP TOP STORETIP TOP STOREDesert Pueblo Books",
+    "email": "TIPTOPSTORETIPTOPSTOREDesertPuebloBooks@gmai.com",
+    "phone": "117-603-0782"
+  },
+  {
+    "id": 29,
+    "name": "DuctTape LaneDuctTape Lane-OnTimeBooks-",
+    "email": "DuctTapeLaneDuctTapeLane-OnTimeBooks-@gmai.com",
+    "phone": "835-519-8488"
+  },
+  {
+    "id": 30,
+    "name": "cratehog",
+    "email": "cratehog@gmai.com",
+    "phone": "313-169-0442"
+  },
+  {
+    "id": 31,
+    "name": "Jenson Books Inc.",
+    "email": "JensonBooksInc.@gmai.com",
+    "phone": "545-215-0655"
+  },
+  {
+    "id": 32,
+    "name": "Joe's Online Emporium",
+    "email": "Joe'sOnlineEmporium@gmai.com",
+    "phone": "469-314-8622"
+  },
+  {
+    "id": 33,
+    "name": "Old Cary Books",
+    "email": "OldCaryBooks@gmai.com",
+    "phone": "825-411-3301"
+  },
+  {
+    "id": 34,
+    "name": "AP Books and More",
+    "email": "APBooksandMore@gmai.com",
+    "phone": "876-339-0348"
+  },
+  {
+    "id": 35,
+    "name": "Media Relay LLC",
+    "email": "MediaRelayLLC@gmai.com",
+    "phone": "577-587-6950"
+  },
+  {
+    "id": 36,
+    "name": "B&D ENTERPRISES LLC",
+    "email": "B&DENTERPRISESLLC@gmai.com",
+    "phone": "823-505-0368"
+  },
+  {
+    "id": 37,
+    "name": "XpressDealsUSXpressDealsUSManor379",
+    "email": "XpressDealsUSXpressDealsUSManor379@gmai.com",
+    "phone": "947-694-8025"
+  },
+  {
+    "id": 38,
+    "name": "YMCA at Virginia Tech Thrift Shop",
+    "email": "YMCAatVirginiaTechThriftShop@gmai.com",
+    "phone": "282-260-7003"
+  },
+  {
+    "id": 39,
+    "name": "KJS Direct",
+    "email": "KJSDirect@gmai.com",
+    "phone": "886-950-1498"
+  },
+  {
+    "id": 40,
+    "name": "Artemis Speed",
+    "email": "ArtemisSpeed@gmai.com",
+    "phone": "142-486-4778"
+  },
+  {
+    "id": 41,
+    "name": "Jerz Products LLC",
+    "email": "JerzProductsLLC@gmai.com",
+    "phone": "588-165-9214"
+  },
+  {
+    "id": 42,
+    "name": "Treasures & Goods",
+    "email": "Treasures&Goods@gmai.com",
+    "phone": "237-776-7806"
+  },
+  {
+    "id": 43,
+    "name": "Ivy_League_Books",
+    "email": "Ivy_League_Books@gmai.com",
+    "phone": "650-926-9546"
+  },
+  {
+    "id": 44,
+    "name": "Lower-Christian-PricesLower-Christian-Prices",
+    "email": "Lower-Christian-PricesLower-Christian-Prices@gmai.com",
+    "phone": "827-841-9822"
+  },
+  {
+    "id": 45,
+    "name": "AZ e-slinger",
+    "email": "AZe-slinger@gmai.com",
+    "phone": "753-561-4525"
+  },
+  {
+    "id": 46,
+    "name": "ThriftBooks-Reno",
+    "email": "ThriftBooks-Reno@gmai.com",
+    "phone": "873-153-2089"
+  },
+  {
+    "id": 47,
+    "name": "Frank C Fluharty",
+    "email": "FrankCFluharty@gmai.com",
+    "phone": "435-862-3518"
+  },
+  {
+    "id": 48,
+    "name": "VMG Books & Media",
+    "email": "VMGBooks&Media@gmai.com",
+    "phone": "494-742-3892"
+  },
+  {
+    "id": 49,
+    "name": "GoodwillBooks",
+    "email": "GoodwillBooks@gmai.com",
+    "phone": "900-387-6159"
+  },
+  {
+    "id": 50,
+    "name": "Wilson Mercantile",
+    "email": "WilsonMercantile@gmai.com",
+    "phone": "249-282-2386"
+  },
+  {
+    "id": 51,
+    "name": "the_nps_store",
+    "email": "the_nps_store@gmai.com",
+    "phone": "945-703-8239"
+  },
+  {
+    "id": 52,
+    "name": "MidwestMixedMedia",
+    "email": "MidwestMixedMedia@gmai.com",
+    "phone": "912-933-4550"
+  },
+  {
+    "id": 53,
+    "name": "bookoutlet1",
+    "email": "bookoutlet1@gmai.com",
+    "phone": "416-495-0318"
+  },
+  {
+    "id": 54,
+    "name": "Mostly Tomatos",
+    "email": "MostlyTomatos@gmai.com",
+    "phone": "243-587-3692"
+  },
+  {
+    "id": 55,
+    "name": "Watson82",
+    "email": "Watson82@gmai.com",
+    "phone": "731-258-6192"
+  },
+  {
+    "id": 56,
+    "name": "indoobestsellers",
+    "email": "indoobestsellers@gmai.com",
+    "phone": "208-707-3657"
+  },
+  {
+    "id": 57,
+    "name": "EB-BOOKS LLC",
+    "email": "EB-BOOKSLLC@gmai.com",
+    "phone": "529-848-4293"
+  },
+  {
+    "id": 58,
+    "name": "BookOutlet USA",
+    "email": "BookOutletUSA@gmai.com",
+    "phone": "463-470-5912"
+  },
+  {
+    "id": 59,
+    "name": "SRS Company",
+    "email": "SRSCompany@gmai.com",
+    "phone": "650-823-2769"
+  },
+  {
+    "id": 60,
+    "name": "worldofbooksinc",
+    "email": "worldofbooksinc@gmai.com",
+    "phone": "249-763-9314"
+  },
+  {
+    "id": 61,
+    "name": "Boomerang Books UVU BYU",
+    "email": "BoomerangBooksUVUBYU@gmai.com",
+    "phone": "367-879-6861"
+  },
+  {
+    "id": 62,
+    "name": "FranklinMedia",
+    "email": "FranklinMedia@gmai.com",
+    "phone": "587-942-8816"
+  },
+  {
+    "id": 63,
+    "name": "Goodwill of Orange County",
+    "email": "GoodwillofOrangeCounty@gmai.com",
+    "phone": "520-976-6393"
+  },
+  {
+    "id": 64,
+    "name": "better books quality",
+    "email": "betterbooksquality@gmai.com",
+    "phone": "461-899-8547"
+  },
+  {
+    "id": 65,
+    "name": "MediaFlow",
+    "email": "MediaFlow@gmai.com",
+    "phone": "278-669-1148"
+  },
+  {
+    "id": 66,
+    "name": "Collect Musings",
+    "email": "CollectMusings@gmai.com",
+    "phone": "734-339-7896"
+  },
+  {
+    "id": 67,
+    "name": "Emmie's Store",
+    "email": "Emmie'sStore@gmai.com",
+    "phone": "491-769-0506"
+  },
+  {
+    "id": 68,
+    "name": "Mojow",
+    "email": "Mojow@gmai.com",
+    "phone": "177-614-7850"
+  },
+  {
+    "id": 69,
+    "name": "HPB Inc.",
+    "email": "HPBInc.@gmai.com",
+    "phone": "630-163-3696"
+  },
+  {
+    "id": 70,
+    "name": "LiquidationFactor",
+    "email": "LiquidationFactor@gmai.com",
+    "phone": "333-347-3813"
+  },
+  {
+    "id": 71,
+    "name": "BankofBooks",
+    "email": "BankofBooks@gmai.com",
+    "phone": "975-317-3093"
+  },
+  {
+    "id": 72,
+    "name": "MjTreasuresCT",
+    "email": "MjTreasuresCT@gmai.com",
+    "phone": "132-729-8031"
+  },
+  {
+    "id": 73,
+    "name": "Hope Commerce",
+    "email": "HopeCommerce@gmai.com",
+    "phone": "755-501-4661"
+  },
+  {
+    "id": 74,
+    "name": "MLan eCommerce",
+    "email": "MLaneCommerce@gmai.com",
+    "phone": "338-335-9680"
+  },
+  {
+    "id": 75,
+    "name": "SCLbooks",
+    "email": "SCLbooks@gmai.com",
+    "phone": "482-991-2348"
+  },
+  {
+    "id": 76,
+    "name": "Bay State Book Company",
+    "email": "BayStateBookCompany@gmai.com",
+    "phone": "209-948-2111"
+  },
+  {
+    "id": 77,
+    "name": "goodwill_ind_of_mid_tn",
+    "email": "goodwill_ind_of_mid_tn@gmai.com",
+    "phone": "698-370-8990"
+  }
+]
