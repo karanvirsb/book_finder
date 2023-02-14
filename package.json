@@ -13,7 +13,8 @@
 		"lint": "next lint",
 		"generate": "graphql-codegen",
 		"test": "vitest watch --ui",
-		"coverage": "vitest run --coverage"
+		"coverage": "vitest run --coverage",
+		"prisma-main": "ts-node-esm src/prisma/index.ts"
 	},
 	"dependencies": {
 		"@next/font": "13.1.6",
