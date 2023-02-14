@@ -11,10 +11,10 @@ datasource db {
 }
 
 model Books {
-  asin               String   @id
+  asin               String    @id
   ISBN10             String
   author_id          Int
-  author             Author   @relation(fields: [author_id], references: [id])
+  author             Author    @relation(fields: [author_id], references: [id])
   currency           String
   description        String
   final_price        Decimal
@@ -26,6 +26,7 @@ model Books {
   rating             String
   reviews_count      Int
   publisher_id       Int
+  publisher          Publisher @relation(fields: [publisher_id], references: [id])
   title              String
   url                String
   categories         String[]
@@ -39,8 +40,9 @@ model Author {
 }
 
 model Publisher {
-  id    Int    @id @default(autoincrement())
+  id    Int     @id @default(autoincrement())
   name  String
   email String
   phone String
+  Books Books[]
 }
