@@ -34,16 +34,17 @@ specifiers:
   next: 13.1.6
   postcss: ^8.4.21
   prettier: ^2.8.3
+  prisma: ^4.10.1
   react: 18.2.0
   react-dom: 18.2.0
   tailwindcss: ^3.2.4
+  ts-node: ^10.9.1
   typescript: 4.9.5
   vite: ^4.1.1
   vitest: ^0.28.4
 
 dependencies:
   '@next/font': 13.1.6
-  '@types/node': 18.11.19
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
   '@urql/core': 3.1.1_graphql@16.6.0
@@ -63,8 +64,9 @@ devDependencies:
   '@graphql-codegen/typescript-operations': 3.0.0_graphql@16.6.0
   '@graphql-codegen/typescript-urql': 3.7.3_graphql@16.6.0
   '@graphql-tools/mock': 8.7.18_graphql@16.6.0
-  '@prisma/client': 4.10.0
+  '@prisma/client': 4.10.0_prisma@4.10.1
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
+  '@types/node': 18.11.19
   '@typescript-eslint/eslint-plugin': 5.50.0_go4drrxstycfikanvu45pi4vgq
   '@typescript-eslint/parser': 5.50.0_4vsywjlpuriuw3tl5oq6zy5a64
   '@vitest/ui': 0.28.4
@@ -80,7 +82,9 @@ devDependencies:
   jsdom: 21.1.0
   postcss: 8.4.21
   prettier: 2.8.3
-  tailwindcss: 3.2.4_postcss@8.4.21
+  prisma: 4.10.1
+  tailwindcss: 3.2.4_aesdjsunmf4wiehhujt67my7tu
+  ts-node: 10.9.1_qqdszkrtcshgbphghj7vnvrrby
   typescript: 4.9.5
   vitest: 0.28.4_vun5xzxu3tkrssf3erdbijyyki
 
@@ -1915,7 +1919,7 @@ packages:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
 
-  /@prisma/client/4.10.0:
+  /@prisma/client/4.10.0_prisma@4.10.1:
     resolution: {integrity: sha512-sBmYb1S6SMKFIESaLMfKqWSalv3pH73cMCsFt9HslJvYjIIcKQCA6PDL2O4SZGWvc4JBef9cg5Gd7d9x3AtKjw==}
     engines: {node: '>=14.17'}
     requiresBuild: true
@@ -1926,10 +1930,16 @@ packages:
         optional: true
     dependencies:
       '@prisma/engines-version': 4.10.0-84.ca7fcef713137fa11029d519a9780db130cca91d
+      prisma: 4.10.1
     dev: true
 
   /@prisma/engines-version/4.10.0-84.ca7fcef713137fa11029d519a9780db130cca91d:
     resolution: {integrity: sha512-UVpmVlvSaGfY4ue+hh8CTkIesbuXCFUfrr8zk//+u85WwkKfWMtt6nLB2tNSzR1YO8eAA8+HqNf8LM7mnXIq5w==}
+    dev: true
+
+  /@prisma/engines/4.10.1:
+    resolution: {integrity: sha512-B3tcTxjx196nuAu1GOTKO9cGPUgTFHYRdkPkTS4m5ptb2cejyBlH9X7GOfSt3xlI7p4zAJDshJP4JJivCg9ouA==}
+    requiresBuild: true
     dev: true
 
   /@protobufjs/aspromise/1.1.2:
@@ -5992,7 +6002,7 @@ packages:
       postcss: 8.4.21
     dev: true
 
-  /postcss-load-config/3.1.4_postcss@8.4.21:
+  /postcss-load-config/3.1.4_aesdjsunmf4wiehhujt67my7tu:
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
     engines: {node: '>= 10'}
     peerDependencies:
@@ -6006,6 +6016,7 @@ packages:
     dependencies:
       lilconfig: 2.0.6
       postcss: 8.4.21
+      ts-node: 10.9.1_qqdszkrtcshgbphghj7vnvrrby
       yaml: 1.10.2
     dev: true
 
@@ -6069,6 +6080,15 @@ packages:
       ansi-regex: 5.0.1
       ansi-styles: 5.2.0
       react-is: 17.0.2
+    dev: true
+
+  /prisma/4.10.1:
+    resolution: {integrity: sha512-0jDxgg+DruB1kHVNlcspXQB9au62IFfVg9drkhzXudszHNUAQn0lVuu+T8np0uC2z1nKD5S3qPeCyR8u5YFLnA==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 4.10.1
     dev: true
 
   /promise/7.3.1:
@@ -6778,7 +6798,7 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /tailwindcss/3.2.4_postcss@8.4.21:
+  /tailwindcss/3.2.4_aesdjsunmf4wiehhujt67my7tu:
     resolution: {integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
@@ -6802,7 +6822,7 @@ packages:
       postcss: 8.4.21
       postcss-import: 14.1.0_postcss@8.4.21
       postcss-js: 4.0.0_postcss@8.4.21
-      postcss-load-config: 3.1.4_postcss@8.4.21
+      postcss-load-config: 3.1.4_aesdjsunmf4wiehhujt67my7tu
       postcss-nested: 6.0.0_postcss@8.4.21
       postcss-selector-parser: 6.0.11
       postcss-value-parser: 4.2.0
