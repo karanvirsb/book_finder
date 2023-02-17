@@ -6,7 +6,7 @@ import prisma from "../../../prisma";
 interface args {
 	limit: number;
 	page: number;
-	title: string;
+	searchQuery: string;
 }
 
 const getBooksByTitleResolver: resolver = {
@@ -14,13 +14,16 @@ const getBooksByTitleResolver: resolver = {
 	args: {
 		limit: { type: GraphQLInt },
 		page: { type: GraphQLInt },
-		title: { type: GraphQLString },
+		searchQuery: { type: GraphQLString },
 	},
-	async resolve(_, { limit, page, title }: args) {
+	async resolve(_, { limit, page, searchQuery }: args) {
 		await prisma.books.findMany({
 			skip: page * limit,
 			take: limit,
-			where: { title: { contains: title } },
+			include: {
+				author: true,
+			},
+			where: { title: { contains: searchQuery } },
 		});
 	},
 };
