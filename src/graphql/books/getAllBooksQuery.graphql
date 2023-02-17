@@ -8,5 +8,6 @@ query getAllBooks($limit: Int, $page: Int) {
 		description
 		image_url
 		rating
+		title
 	}
 }
