@@ -1,0 +1,12 @@
+query getAllBooks($limit: Int, $page: Int) {
+	getAllBooksByPage(limit: $limit, page: $page) {
+		asin
+		author {
+			name
+			id
+		}
+		description
+		image_url
+		rating
+	}
+}
