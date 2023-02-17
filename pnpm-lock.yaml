@@ -30,6 +30,7 @@ specifiers:
   eslint-plugin-react: ^7.32.2
   graphql: ^16.6.0
   graphql-codegen: ^0.4.0
+  graphql-type-json: ^0.3.2
   jsdom: ^21.1.0
   next: 13.1.6
   postcss: ^8.4.21
@@ -51,6 +52,7 @@ dependencies:
   '@vitejs/plugin-react': 3.1.0_vite@4.1.1
   eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
   graphql: 16.6.0
+  graphql-type-json: 0.3.2_graphql@16.6.0
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -4538,6 +4540,14 @@ packages:
       graphql: 16.6.0
       tslib: 2.5.0
     dev: true
+
+  /graphql-type-json/0.3.2_graphql@16.6.0:
+    resolution: {integrity: sha512-J+vjof74oMlCWXSvt0DOf2APEdZOCdubEvGDUAlqH//VBYcOYsGgRW7Xzorr44LvkjiuvecWc8fChxuZZbChtg==}
+    peerDependencies:
+      graphql: '>=0.8.0'
+    dependencies:
+      graphql: 16.6.0
+    dev: false
 
   /graphql-ws/5.11.3_graphql@16.6.0:
     resolution: {integrity: sha512-fU8zwSgAX2noXAsuFiCZ8BtXeXZOzXyK5u1LloCdacsVth4skdBMPO74EG51lBoWSIZ8beUocdpV8+cQHBODnQ==}
