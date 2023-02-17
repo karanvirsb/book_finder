@@ -1,10 +1,9 @@
 import prisma from "../../prisma";
 import { getAllBooksByPageDb } from "./getAllBooksByPage";
+import { getBooksByTitleDb } from "./getBooksByTitle";
 
 export const getAllBooksByPageUseCase = getAllBooksByPageDb({
 	db: prisma,
 });
 
-export const BookUseCases = Object.freeze({
-	getAllBooksByPageUseCase,
-});
+export const getBooksByTitleUseCase = getBooksByTitleDb({ db: prisma });
