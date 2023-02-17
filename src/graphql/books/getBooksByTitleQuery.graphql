@@ -1,0 +1,17 @@
+query getBooksByTitle($limit: Int, $page: Int, $searchQuery: String) {
+	getBooksByTitleResolver(
+		limit: $limit
+		page: $page
+		searchQuery: $searchQuery
+	) {
+		asin
+		author {
+			name
+			id
+		}
+		description
+		image_url
+		rating
+		title
+	}
+}
