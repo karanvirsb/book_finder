@@ -17,7 +17,7 @@ const getBooksByTitleResolver: resolver = {
 		searchQuery: { type: GraphQLString },
 	},
 	async resolve(_, { limit, page, searchQuery }: args) {
-		await prisma.books.findMany({
+		return await prisma.books.findMany({
 			skip: page * limit,
 			take: limit,
 			include: {
