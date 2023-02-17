@@ -1,8 +1,4 @@
-import {
-	type GraphQLType,
-	GraphQLTypeResolver,
-	type GraphQLFieldResolver,
-} from "graphql";
+import { type GraphQLFieldResolver } from "graphql";
 
 export interface resolver {
 	type: GraphQLOutputType;
