@@ -1,4 +1,4 @@
-import { GraphQLList, GraphQLInt, type GraphQLScalarType } from "graphql";
+import { GraphQLList, GraphQLInt } from "graphql";
 import prisma from "../../../prisma";
 import BookType from "../typedef/book-typedef";
 import { type resolver } from "../../types/resolvers";
