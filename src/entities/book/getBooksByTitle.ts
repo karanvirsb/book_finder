@@ -1,10 +1,10 @@
 import { type Books, type Author, type PrismaClient } from "@prisma/client";
 
-interface getBooksByTitleDbDependency {
+export interface getBooksByTitleDbDependency {
 	db: PrismaClient;
 }
 
-interface getBooksByTitle {
+export interface getBooksByTitle {
 	limit: number;
 	page: number;
 	searchQuery: string;
