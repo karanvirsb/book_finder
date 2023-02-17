@@ -1,8 +1,7 @@
 import { GraphQLInt, GraphQLList, GraphQLString } from "graphql";
 import { type resolver } from "../../types/resolvers";
 import BookType from "../typedef/book-typedef";
-import prisma from "../../../prisma";
-import BookDb from "../../../entities/book/db";
+import { getBooksByTitleUseCase } from "../../../entities/book";
 
 interface args {
 	limit: number;
@@ -18,7 +17,7 @@ const getBooksByTitleResolver: resolver = {
 		searchQuery: { type: GraphQLString },
 	},
 	async resolve(_, args: args) {
-		return await BookDb.getBooksByTitleDb(args);
+		return await getBooksByTitleUseCase(args);
 	},
 };
 
