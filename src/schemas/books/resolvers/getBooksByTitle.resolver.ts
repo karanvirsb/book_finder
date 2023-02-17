@@ -2,6 +2,7 @@ import { GraphQLInt, GraphQLList, GraphQLString } from "graphql";
 import { type resolver } from "../../types/resolvers";
 import BookType from "../typedef/book-typedef";
 import prisma from "../../../prisma";
+import BookDb from "../../../entities/book/db";
 
 interface args {
 	limit: number;
@@ -16,15 +17,8 @@ const getBooksByTitleResolver: resolver = {
 		page: { type: GraphQLInt },
 		searchQuery: { type: GraphQLString },
 	},
-	async resolve(_, { limit, page, searchQuery }: args) {
-		return await prisma.books.findMany({
-			skip: page * limit,
-			take: limit,
-			include: {
-				author: true,
-			},
-			where: { title: { contains: searchQuery } },
-		});
+	async resolve(_, args: args) {
+		return await BookDb.getBooksByTitleDb(args);
 	},
 };
 
