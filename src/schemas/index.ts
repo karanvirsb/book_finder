@@ -1,12 +1,5 @@
-import {
-	GraphQLInt,
-	GraphQLList,
-	GraphQLObjectType,
-	GraphQLSchema,
-	GraphQLString,
-} from "graphql";
-import BookType from "./books/typedef/book-typedef";
-import prisma from "../prisma";
+import { GraphQLObjectType, GraphQLSchema, GraphQLString } from "graphql";
+import bookResolvers from "./books/resolvers";
 
 const RootQuery = new GraphQLObjectType({
 	name: "RootQueryType",
@@ -18,19 +11,7 @@ const RootQuery = new GraphQLObjectType({
 				return "Hello World";
 			},
 		},
-		getAllBooksByPage: {
-			type: new GraphQLList(BookType),
-			args: { limit: { type: GraphQLInt }, page: { type: GraphQLInt } },
-			async resolve(_, args) {
-				return await prisma.books.findMany({
-					take: args.limit,
-					skip: args.page * args.limit,
-					include: {
-						author: true,
-					},
-				});
-			},
-		},
+		...bookResolvers,
 	},
 });
 
