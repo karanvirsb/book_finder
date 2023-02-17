@@ -2,7 +2,7 @@ import { type Prisma, PrismaClient } from "@prisma/client";
 import authors from "../model/authors.json" assert { type: "json" };
 import books from "../model/books.json" assert { type: "json" };
 import publishers from "../model/publisher.json" assert { type: "json" };
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({ errorFormat: "minimal" });
 
 export default prisma;
 
