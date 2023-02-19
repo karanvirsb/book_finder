@@ -1,5 +1,5 @@
 import { type Books, type Author, type PrismaClient } from "@prisma/client";
-import { TypeOf, ZodError, z } from "zod";
+import { ZodError, z } from "zod";
 
 const getBooksByTitleSchema = z.object({
 	limit: z.number(),
