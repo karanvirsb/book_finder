@@ -1,6 +1,6 @@
 import prisma from "../../prisma";
 import { getAllBooksByPageDb, getAllBooksByPageUC } from "./getAllBooksByPage";
-import { getBooksByTitleDb } from "./getBooksByTitle";
+import { getBooksByTitleDb, getBooksByTitleUC } from "./getBooksByTitle";
 
 const getAllBooksByPageDbDependency = getAllBooksByPageDb({
 	db: prisma,
@@ -10,4 +10,8 @@ export const getAllBooksByPageUseCase = getAllBooksByPageUC({
 	getAllBooksByPageDb: getAllBooksByPageDbDependency,
 });
 
-export const getBooksByTitleUseCase = getBooksByTitleDb({ db: prisma });
+const getBooksByTitleDBAccess = getBooksByTitleDb({ db: prisma });
+
+export const getBooksByTitleUseCase = getBooksByTitleUC({
+	getBooksByTitleDB: getBooksByTitleDBAccess,
+});
