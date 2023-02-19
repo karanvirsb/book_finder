@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@apollo/server': ^4.3.3
   '@as-integrations/next': ^1.2.0
+  '@faker-js/faker': ^7.6.0
   '@graphql-codegen/cli': ^3.0.0
   '@graphql-codegen/typescript-graphql-request': ^4.5.8
   '@graphql-codegen/typescript-operations': ^3.0.0
@@ -63,6 +64,7 @@ dependencies:
 devDependencies:
   '@apollo/server': 4.3.3_graphql@16.6.0
   '@as-integrations/next': 1.2.0_7dxyzktbk4i475mgy6qxzo3xf4
+  '@faker-js/faker': 7.6.0
   '@graphql-codegen/cli': 3.0.0_rcjwnicpkk3v3qk32mdk6vonfm
   '@graphql-codegen/typescript-graphql-request': 4.5.8_graphql@16.6.0
   '@graphql-codegen/typescript-operations': 3.0.0_graphql@16.6.0
@@ -1092,6 +1094,11 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+
+  /@faker-js/faker/7.6.0:
+    resolution: {integrity: sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==}
+    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
+    dev: true
 
   /@graphql-codegen/cli/3.0.0_rcjwnicpkk3v3qk32mdk6vonfm:
     resolution: {integrity: sha512-16nuFabHCfPQ/d+v52OvR1ueL8eiJvS/nRuvuEV8d9T1fkborHKRw4lhyKVebu9izFBs6G0CvVCLhgVzQwHSLw==}
