@@ -30,6 +30,7 @@ export function getAllBooksByPageUC({
 			if (error instanceof ZodError) {
 				return error.format();
 			}
+			return error;
 		}
 	};
 }
@@ -45,7 +46,7 @@ export function getAllBooksByPageDb({ db }: getAllBooksByPageDependencies) {
 					author: Author;
 				}
 		  >
-		| undefined
+		| unknown
 	> {
 		try {
 			const result = await db.books.findMany({
@@ -59,6 +60,7 @@ export function getAllBooksByPageDb({ db }: getAllBooksByPageDependencies) {
 			return result;
 		} catch (error) {
 			console.log(error);
+			return error;
 		}
 	};
 }
