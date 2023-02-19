@@ -9,7 +9,7 @@ const getBooksByTitleSchema = z.object({
 
 export type getBooksByTitle = z.infer<typeof getBooksByTitleSchema>;
 
-export interface GetBooksByTitleUCDependency {
+export interface IGetBooksByTitle {
 	getBooksByTitleDB: ({ limit, page, searchQuery }: getBooksByTitle) => Promise<
 		| Array<
 				Books & {
@@ -20,9 +20,7 @@ export interface GetBooksByTitleUCDependency {
 	>;
 }
 
-export function getBooksByTitleUC({
-	getBooksByTitleDB,
-}: GetBooksByTitleUCDependency) {
+export function getBooksByTitleUC({ getBooksByTitleDB }: IGetBooksByTitle) {
 	return async function (groupInfo: getBooksByTitle) {
 		try {
 			await getBooksByTitleSchema.parseAsync(groupInfo);
