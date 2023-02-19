@@ -15,7 +15,7 @@ export interface getAllBooksByPageUCDependencies {
 					author: Author;
 				}
 		  >
-		| undefined
+		| unknown
 	>;
 }
 
