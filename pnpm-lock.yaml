@@ -4,9 +4,10 @@ specifiers:
   '@apollo/server': ^4.3.3
   '@as-integrations/next': ^1.2.0
   '@faker-js/faker': ^7.6.0
-  '@graphql-codegen/cli': ^3.0.0
+  '@graphql-codegen/cli': 3.0.0
   '@graphql-codegen/client-preset': ^2.0.0
-  '@graphql-codegen/typescript': ^3.0.0
+  '@graphql-codegen/typescript': 3.0.0
+  '@graphql-codegen/typescript-document-nodes': 3.0.0
   '@graphql-codegen/typescript-graphql-request': ^4.5.8
   '@graphql-codegen/typescript-operations': ^3.0.0
   '@graphql-codegen/typescript-urql': ^3.7.3
@@ -70,6 +71,7 @@ devDependencies:
   '@graphql-codegen/cli': 3.0.0_rcjwnicpkk3v3qk32mdk6vonfm
   '@graphql-codegen/client-preset': 2.0.0_graphql@16.6.0
   '@graphql-codegen/typescript': 3.0.0_graphql@16.6.0
+  '@graphql-codegen/typescript-document-nodes': 3.0.0_graphql@16.6.0
   '@graphql-codegen/typescript-graphql-request': 4.5.8_graphql@16.6.0
   '@graphql-codegen/typescript-operations': 3.0.0_graphql@16.6.0
   '@graphql-codegen/typescript-urql': 3.7.3_graphql@16.6.0
@@ -1270,6 +1272,21 @@ packages:
       '@graphql-codegen/visitor-plugin-common': 3.0.0_graphql@16.6.0
       auto-bind: 4.0.0
       change-case-all: 1.0.15
+      graphql: 16.6.0
+      tslib: 2.4.1
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: true
+
+  /@graphql-codegen/typescript-document-nodes/3.0.0_graphql@16.6.0:
+    resolution: {integrity: sha512-IxBqVcFw+8wRqbs4Jd/WkoCT0PnFst1Qq0JsDEGFoqNnc5Bjs+BS5g3OYvSJTP04QUi6G8iTKr91FgEUubfI7Q==}
+    peerDependencies:
+      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      '@graphql-codegen/plugin-helpers': 4.0.0_graphql@16.6.0
+      '@graphql-codegen/visitor-plugin-common': 3.0.0_graphql@16.6.0
+      auto-bind: 4.0.0
       graphql: 16.6.0
       tslib: 2.4.1
     transitivePeerDependencies:
