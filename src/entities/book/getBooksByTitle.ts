@@ -1,5 +1,18 @@
 import { type Books, type Author, type PrismaClient } from "@prisma/client";
 
+export interface GetBooksByTitleUCDependency {
+	getBooksByTitle: ({ limit, page, searchQuery }: getBooksByTitle) => Promise<
+		| Array<
+				Books & {
+					author: Author;
+				}
+		  >
+		| unknown
+	>;
+}
+
+export function getBooksByTitleUC() {}
+
 export interface getBooksByTitleDbDependency {
 	db: PrismaClient;
 }
@@ -21,7 +34,7 @@ export function getBooksByTitleDb({ db }: getBooksByTitleDbDependency) {
 					author: Author;
 				}
 		  >
-		| undefined
+		| unknown
 	> {
 		try {
 			const result = await db.books.findMany({
@@ -36,6 +49,7 @@ export function getBooksByTitleDb({ db }: getBooksByTitleDbDependency) {
 			return result;
 		} catch (error) {
 			console.log(error);
+			return error;
 		}
 	};
 }
