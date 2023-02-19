@@ -2,7 +2,7 @@ import { type Author, type Books } from "@prisma/client";
 import { faker } from "@faker-js/faker";
 import { type Decimal } from "@prisma/client/runtime";
 
-export default function (): Books & { author: Author } {
+export default function makeFakeBook(): Books & { author: Author } {
 	const authorId = faker.datatype.number();
 	const authorName = `${faker.name.firstName("male")} ${faker.name.lastName(
 		"male"
