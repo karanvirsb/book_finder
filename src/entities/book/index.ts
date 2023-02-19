@@ -10,6 +10,7 @@ export const getAllBooksByPageUseCase = getAllBooksByPageUC({
 	getAllBooksByPageDb: getAllBooksByPageDbDependency,
 });
 
+// get books by title
 const getBooksByTitleDBAccess = getBooksByTitleDb({ db: prisma });
 
 export const getBooksByTitleUseCase = getBooksByTitleUC({
