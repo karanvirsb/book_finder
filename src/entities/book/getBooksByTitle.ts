@@ -1,4 +1,13 @@
 import { type Books, type Author, type PrismaClient } from "@prisma/client";
+import { TypeOf, z } from "zod";
+
+const getBooksByTitleSchema = z.object({
+	limit: z.number(),
+	page: z.number(),
+	searchQuery: z.string(),
+});
+
+export type getBooksByTitle = z.infer<typeof getBooksByTitleSchema>;
 
 export interface GetBooksByTitleUCDependency {
 	getBooksByTitle: ({ limit, page, searchQuery }: getBooksByTitle) => Promise<
@@ -11,16 +20,14 @@ export interface GetBooksByTitleUCDependency {
 	>;
 }
 
-export function getBooksByTitleUC() {}
+export function getBooksByTitleUC({
+	getBooksByTitle,
+}: GetBooksByTitleUCDependency) {
+	return async function () {};
+}
 
 export interface getBooksByTitleDbDependency {
 	db: PrismaClient;
-}
-
-export interface getBooksByTitle {
-	limit: number;
-	page: number;
-	searchQuery: string;
 }
 
 export function getBooksByTitleDb({ db }: getBooksByTitleDbDependency) {
