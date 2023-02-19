@@ -21,7 +21,9 @@ describe("Tesing getAllBooksByPage UC and DB Access", () => {
 				author: Author;
 			}
 		>;
-		console.log(result);
+
 		expect(result.length).toBe(1);
+		expect(result[0]).toHaveProperty("author");
+		expect(result[0]).toHaveProperty("asin");
 	});
 });
