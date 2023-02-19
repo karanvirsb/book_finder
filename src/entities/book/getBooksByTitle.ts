@@ -1,5 +1,5 @@
 import { type Books, type Author, type PrismaClient } from "@prisma/client";
-import { TypeOf, z } from "zod";
+import { TypeOf, ZodError, z } from "zod";
 
 const getBooksByTitleSchema = z.object({
 	limit: z.number(),
@@ -10,7 +10,7 @@ const getBooksByTitleSchema = z.object({
 export type getBooksByTitle = z.infer<typeof getBooksByTitleSchema>;
 
 export interface GetBooksByTitleUCDependency {
-	getBooksByTitle: ({ limit, page, searchQuery }: getBooksByTitle) => Promise<
+	getBooksByTitleDB: ({ limit, page, searchQuery }: getBooksByTitle) => Promise<
 		| Array<
 				Books & {
 					author: Author;
@@ -21,9 +21,19 @@ export interface GetBooksByTitleUCDependency {
 }
 
 export function getBooksByTitleUC({
-	getBooksByTitle,
+	getBooksByTitleDB,
 }: GetBooksByTitleUCDependency) {
-	return async function () {};
+	return async function (groupInfo: getBooksByTitle) {
+		try {
+			await getBooksByTitleSchema.parseAsync(groupInfo);
+			return await getBooksByTitleDB(groupInfo);
+		} catch (error) {
+			if (error instanceof ZodError) {
+				return error.format();
+			}
+			return error;
+		}
+	};
 }
 
 export interface getBooksByTitleDbDependency {
