@@ -5,6 +5,7 @@ specifiers:
   '@as-integrations/next': ^1.2.0
   '@faker-js/faker': ^7.6.0
   '@graphql-codegen/cli': ^3.0.0
+  '@graphql-codegen/typescript': ^3.0.0
   '@graphql-codegen/typescript-graphql-request': ^4.5.8
   '@graphql-codegen/typescript-operations': ^3.0.0
   '@graphql-codegen/typescript-urql': ^3.7.3
@@ -66,6 +67,7 @@ devDependencies:
   '@as-integrations/next': 1.2.0_7dxyzktbk4i475mgy6qxzo3xf4
   '@faker-js/faker': 7.6.0
   '@graphql-codegen/cli': 3.0.0_rcjwnicpkk3v3qk32mdk6vonfm
+  '@graphql-codegen/typescript': 3.0.0_graphql@16.6.0
   '@graphql-codegen/typescript-graphql-request': 4.5.8_graphql@16.6.0
   '@graphql-codegen/typescript-operations': 3.0.0_graphql@16.6.0
   '@graphql-codegen/typescript-urql': 3.7.3_graphql@16.6.0

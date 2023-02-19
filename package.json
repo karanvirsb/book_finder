@@ -36,6 +36,7 @@
 		"@as-integrations/next": "^1.2.0",
 		"@faker-js/faker": "^7.6.0",
 		"@graphql-codegen/cli": "^3.0.0",
+		"@graphql-codegen/typescript": "^3.0.0",
 		"@graphql-codegen/typescript-graphql-request": "^4.5.8",
 		"@graphql-codegen/typescript-operations": "^3.0.0",
 		"@graphql-codegen/typescript-urql": "^3.7.3",
