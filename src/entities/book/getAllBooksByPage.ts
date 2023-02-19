@@ -8,7 +8,7 @@ const getAllBooksByPageSchema = z.object({
 
 export type getAllBooksByPage = z.infer<typeof getAllBooksByPageSchema>;
 
-export interface getAllBooksByPageUCDependencies {
+export interface IGetAllBooksByPageDb {
 	getAllBooksByPageDb: ({ limit, page }: getAllBooksByPage) => Promise<
 		| Array<
 				Books & {
@@ -21,7 +21,7 @@ export interface getAllBooksByPageUCDependencies {
 
 export function getAllBooksByPageUC({
 	getAllBooksByPageDb,
-}: getAllBooksByPageUCDependencies) {
+}: IGetAllBooksByPageDb) {
 	return async function ({ limit, page }: getAllBooksByPage) {
 		try {
 			await getAllBooksByPageSchema.parseAsync({ limit, page });
