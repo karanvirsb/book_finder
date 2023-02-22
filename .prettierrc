@@ -16,5 +16,7 @@
   "trailingComma": "es5",
   "useTabs": true,
   "vueIndentScriptAndStyle": false,
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "pluginSearchDirs": false,
   "filepath": "d:\\Documents\\Shared\\Coding\\full_stack_projects\\book_finder\\.eslintrc.json"
 }
