@@ -7,9 +7,9 @@ interface props {
 
 export default function Layout({ children }: props): JSX.Element {
 	return (
-		<>
+		<main className="px-28">
 			<Navbar></Navbar>
 			{children}
-		</>
+		</main>
 	);
 }
