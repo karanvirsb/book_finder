@@ -17,7 +17,7 @@ export default function Navbar() {
 				{/* TODO create login */}
 				<Link
 					href="login"
-					className="rounded-full bg-secondary py-2 px-4 text-primary"
+					className="rounded-full bg-secondary py-1 px-4 text-primary"
 				>
 					Login
 				</Link>
