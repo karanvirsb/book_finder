@@ -5,7 +5,7 @@ export default function Navbar() {
 	return (
 		<header className="flex items-center justify-between pt-2">
 			<p className="text-xl font-semibold">Book Finder</p>
-			<nav className="flex items-center gap-16 text-secondary">
+			<nav className="flex items-center gap-[clamp(1rem,1rem+3svw,4rem)] text-secondary">
 				{/* TODO create page */}
 				<Link href="recently-viewed" hidden={true}>
 					Recently Viewed
