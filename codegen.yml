@@ -1,9 +1,10 @@
 schema: http://localhost:3000/api/graphql
 documents: "./src/**/*.graphql"
 generates:
-  src/generated-types.tsx:
+  src/generated/graphql.ts:
     config:
       withHooks: true
+      overwrite: true
     plugins:
       - typescript
       - typescript-operations
