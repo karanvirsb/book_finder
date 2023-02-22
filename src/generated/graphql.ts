@@ -1,5 +1,6 @@
+import { type GraphQLClient } from "graphql-request";
+import type * as Dom from "graphql-request/dist/types.dom";
 import gql from "graphql-tag";
-import * as Urql from "urql";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends Record<string, unknown>> = { [K in keyof T]: T[K] };
@@ -9,7 +10,6 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
 	[SubKey in K]: Maybe<T[SubKey]>;
 };
-export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
 export interface Scalars {
 	ID: string;
@@ -134,15 +134,6 @@ export const GetAllBooksDocument = gql`
 		}
 	}
 `;
-
-export function useGetAllBooksQuery(
-	options?: Omit<Urql.UseQueryArgs<GetAllBooksQueryVariables>, "query">
-) {
-	return Urql.useQuery<GetAllBooksQuery, GetAllBooksQueryVariables>({
-		query: GetAllBooksDocument,
-		...options,
-	});
-}
 export const GetBooksByTitleDocument = gql`
 	query getBooksByTitle($limit: Int, $page: Int, $searchQuery: String) {
 		getBooksByTitleResolver(
@@ -163,11 +154,53 @@ export const GetBooksByTitleDocument = gql`
 	}
 `;
 
-export function useGetBooksByTitleQuery(
-	options?: Omit<Urql.UseQueryArgs<GetBooksByTitleQueryVariables>, "query">
+export type SdkFunctionWrapper = <T>(
+	action: (requestHeaders?: Record<string, string>) => Promise<T>,
+	operationName: string,
+	operationType?: string
+) => Promise<T>;
+
+const defaultWrapper: SdkFunctionWrapper = async (
+	action,
+	_operationName,
+	_operationType
+) => await action();
+
+export function getSdk(
+	client: GraphQLClient,
+	withWrapper: SdkFunctionWrapper = defaultWrapper
 ) {
-	return Urql.useQuery<GetBooksByTitleQuery, GetBooksByTitleQueryVariables>({
-		query: GetBooksByTitleDocument,
-		...options,
-	});
+	return {
+		async getAllBooks(
+			variables?: GetAllBooksQueryVariables,
+			requestHeaders?: Dom.RequestInit["headers"]
+		): Promise<GetAllBooksQuery> {
+			return await withWrapper(
+				async (wrappedRequestHeaders) =>
+					await client.request<GetAllBooksQuery>(
+						GetAllBooksDocument,
+						variables,
+						{ ...requestHeaders, ...wrappedRequestHeaders }
+					),
+				"getAllBooks",
+				"query"
+			);
+		},
+		async getBooksByTitle(
+			variables?: GetBooksByTitleQueryVariables,
+			requestHeaders?: Dom.RequestInit["headers"]
+		): Promise<GetBooksByTitleQuery> {
+			return await withWrapper(
+				async (wrappedRequestHeaders) =>
+					await client.request<GetBooksByTitleQuery>(
+						GetBooksByTitleDocument,
+						variables,
+						{ ...requestHeaders, ...wrappedRequestHeaders }
+					),
+				"getBooksByTitle",
+				"query"
+			);
+		},
+	};
 }
+export type Sdk = ReturnType<typeof getSdk>;
