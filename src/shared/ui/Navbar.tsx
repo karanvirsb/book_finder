@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Navbar() {
 	return (
-		<header>
+		<header className="flex justify-between">
 			<p>Book Finder</p>
 			<nav>
 				{/* TODO create page */}
