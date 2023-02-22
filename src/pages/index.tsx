@@ -1,4 +1,4 @@
-import { gql } from "@urql/core";
+import { gql } from "urql";
 import { useEffect, useState } from "react";
 import client from "../urql";
 const QUERY = gql`
