@@ -4,7 +4,7 @@ import React from "react";
 export default function Navbar() {
 	return (
 		<header className="flex justify-between">
-			<p className="text-lg font-semibold">Book Finder</p>
+			<p className="text-xl font-semibold">Book Finder</p>
 			<nav className="flex gap-16 text-secondary">
 				{/* TODO create page */}
 				<Link href="recently-viewed" hidden={true}>
@@ -15,7 +15,12 @@ export default function Navbar() {
 				{/* TODO create about page */}
 				<Link href="about">About</Link>
 				{/* TODO create login */}
-				<Link href="login">Login</Link>
+				<Link
+					href="login"
+					className="rounded-full bg-secondary py-2 px-4 text-primary"
+				>
+					Login
+				</Link>
 			</nav>
 		</header>
 	);
