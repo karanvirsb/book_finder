@@ -3,9 +3,9 @@ import React from "react";
 
 export default function Navbar() {
 	return (
-		<header className="flex justify-between">
+		<header className="flex items-center justify-between pt-2">
 			<p className="text-xl font-semibold">Book Finder</p>
-			<nav className="flex gap-16 text-secondary">
+			<nav className="flex items-center gap-16 text-secondary">
 				{/* TODO create page */}
 				<Link href="recently-viewed" hidden={true}>
 					Recently Viewed
