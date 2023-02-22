@@ -3,9 +3,10 @@ documents: "./src/**/*.graphql"
 generates:
   src/generated/graphql.ts:
     config:
-      withHooks: true
+      # withHooks: true
       overwrite: true
     plugins:
       - typescript
       - typescript-operations
-      - typescript-urql
+      - typescript-graphql-request
+      # - typescript-urql
