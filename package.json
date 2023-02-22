@@ -13,7 +13,7 @@
 		"test": "vitest watch --ui",
 		"coverage": "vitest run --coverage",
 		"prisma-main": "ts-node-esm src/prisma/index.ts",
-		"codegen": "graphql-codegen --config codegen.ts"
+		"codegen": "graphql-codegen --config codegen.yml"
 	},
 	"dependencies": {
 		"@next/font": "13.1.6",
