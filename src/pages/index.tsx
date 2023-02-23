@@ -5,7 +5,7 @@ export default function Home(): JSX.Element {
 	return (
 		<main className="relative min-h-[100svh] bg-books-background bg-center bg-no-repeat">
 			<Layout>
-				<section className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+				<section className="absolute top-[50%] left-[50%] flex translate-x-[-50%] translate-y-[-50%] flex-col gap-4">
 					<h1 className="text-center text-[clamp(1.69rem,calc(1.40rem+1.41vw),2.50rem)] font-semibold">
 						Explore the World of <span className="text-tertiary">Books</span> -
 						Find <span className="text-primary_accent">Yours</span> Now!
@@ -17,7 +17,7 @@ export default function Home(): JSX.Element {
 						/>
 						<button
 							type="submit"
-							className="rounded-full bg-tertiary py-1 px-3 uppercase text-primary"
+							className="rounded-full bg-tertiary py-2 px-4 uppercase text-primary"
 						>
 							search
 						</button>
