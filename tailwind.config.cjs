@@ -14,7 +14,7 @@ module.exports = {
 				primary: "#FDF3E9",
 				secondary: "#262020",
 				tertiary: "#347596",
-				accent: "F50063",
+				primary_accent: "#F50063",
 			},
 			backgroundImage: {
 				"books-background": "url('/bg-images/book_background.svg')",
