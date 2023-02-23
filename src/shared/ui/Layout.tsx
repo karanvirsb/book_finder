@@ -7,7 +7,7 @@ interface props {
 
 export default function Layout({ children }: props): JSX.Element {
 	return (
-		<main className="px-[clamp(2rem,1rem+7vw,7rem)]">
+		<main className="relative min-h-[100svh] px-[clamp(2rem,1rem+7vw,7rem)]">
 			<Navbar></Navbar>
 			{children}
 		</main>
