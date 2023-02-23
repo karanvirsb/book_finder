@@ -16,6 +16,9 @@ module.exports = {
 				tertiary: "#347596",
 				accent: "F50063",
 			},
+			backgroundImage: {
+				"books-background": "url('/bg-images/book_background.svg')",
+			},
 		},
 	},
 	plugins: [],
