@@ -5,7 +5,7 @@ export default function Home(): JSX.Element {
 	return (
 		<main className="relative min-h-[100svh] bg-books-background bg-center bg-no-repeat">
 			<Layout>
-				<section className="absolute top-[50%] left-[50%] flex translate-x-[-50%] translate-y-[-50%] flex-col gap-4">
+				<section className="absolute top-[50%] left-[50%] flex translate-x-[-50%] translate-y-[-50%] flex-col gap-6 px-[clamp(2rem,1rem+7vw,7rem)]">
 					<h1 className="text-center text-[clamp(1.69rem,calc(1.40rem+1.41vw),2.50rem)] font-semibold">
 						Explore the World of <span className="text-tertiary">Books</span> -
 						Find <span className="text-primary_accent">Yours</span> Now!
