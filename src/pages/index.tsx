@@ -10,9 +10,14 @@ export default function Home(): JSX.Element {
 						Explore the World of <span className="text-tertiary">Books</span> -
 						Find <span className="text-primary_accent">Yours</span> Now!
 					</h1>
-					<form>
-						<input className="" placeholder="" />
-						<button type="submit"></button>
+					<form className="flex gap-3">
+						<input
+							className="flex-grow rounded-full border-none px-2 outline outline-1 outline-secondary"
+							placeholder="Search for Books"
+						/>
+						<button type="submit" className="uppercase">
+							search
+						</button>
 					</form>
 				</section>
 			</Layout>
