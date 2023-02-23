@@ -5,10 +5,11 @@ export default function Home(): JSX.Element {
 	return (
 		<main className="min-h-[100svh] bg-books-background bg-center bg-no-repeat">
 			<Layout>
-				<h1>
+				<h1 className="text-[clamp(1.69rem,calc(1.40rem+1.41vw),2.50rem)] font-semibold">
 					Explore the World of <span className="text-tertiary">Books</span> -
 					Find <span className="text-primary_accent">Yours</span> Now!
 				</h1>
+				<input className="" placeholder="" />
 			</Layout>
 		</main>
 	);
