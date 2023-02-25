@@ -1,9 +1,17 @@
 import Link from "next/link";
 import React from "react";
 
-export default function Navbar(): JSX.Element {
+interface NavbarProps {
+	classname?: string;
+}
+
+export default function Navbar({ classname }: NavbarProps): JSX.Element {
 	return (
-		<header className="hidden items-center justify-between pt-2 sm:flex">
+		<header
+			className={`hidden items-center justify-between pt-2 sm:flex ${
+				classname ?? ""
+			}`}
+		>
 			<p className="text-xl font-semibold">Book Finder</p>
 			<nav className="flex items-center gap-[clamp(1rem,1rem+3svw,4rem)] text-secondary">
 				{/* TODO create page */}
