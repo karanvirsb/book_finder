@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import MobileNavbar from "./MobileNavbar";
 
 interface props {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 }
 
 export default function Layout({ children }: props): JSX.Element {
