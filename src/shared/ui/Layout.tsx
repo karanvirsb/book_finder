@@ -14,7 +14,7 @@ export default function Layout({
 	classname,
 }: props): JSX.Element {
 	return (
-		<main className={`${classname} px-[clamp(2rem,1rem+7vw,7rem)]`}>
+		<main className={`${classname ?? ""} px-[clamp(2rem,1rem+7vw,7rem)]`}>
 			<Navbar classname={navbarClassName}></Navbar>
 			<MobileNavbar></MobileNavbar>
 			{children}
