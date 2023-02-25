@@ -11,8 +11,8 @@ export default function Books(): JSX.Element {
 						<Searchbar></Searchbar>
 					</section>
 				</Layout>
-				<section>{/* Books */}</section>
 			</main>
+			<section>{/* Books */}</section>
 		</>
 	);
 }
