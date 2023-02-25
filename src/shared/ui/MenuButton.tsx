@@ -7,7 +7,11 @@ export default function MenuButton({
 	setIsMenuOpen,
 }: menuButtonProps): JSX.Element {
 	return (
-		<button>
+		<button
+			onClick={() => {
+				setIsMenuOpen((prev) => !prev);
+			}}
+		>
 			{isMenuOpen ? (
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
