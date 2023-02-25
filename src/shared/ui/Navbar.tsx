@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-export default function Navbar() {
+export default function Navbar(): JSX.Element {
 	return (
 		<header className="hidden items-center justify-between pt-2 sm:flex">
 			<p className="text-xl font-semibold">Book Finder</p>

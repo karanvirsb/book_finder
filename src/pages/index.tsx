@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Layout from "../shared/ui/Layout";
 import Searchbar from "../shared/ui/Searchbar";
 
