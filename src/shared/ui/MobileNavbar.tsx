@@ -3,7 +3,7 @@ import React from "react";
 
 export default function MobileNavbar(): JSX.Element {
 	return (
-		<header className="fixed bottom-0 left-0 flex w-full flex-col items-center justify-between bg-primary py-4 sm:hidden">
+		<header className="fixed bottom-0 left-0 flex w-full flex-col items-center justify-between bg-primary pt-4 sm:hidden">
 			<p className="text-xl font-semibold">Book Finder</p>
 			<nav className="flex w-full flex-col items-center gap-6 pt-4 text-secondary">
 				{/* TODO create page */}
@@ -25,7 +25,7 @@ export default function MobileNavbar(): JSX.Element {
 				{/* TODO create login */}
 				<Link
 					href="login"
-					className="w-full border-none bg-secondary py-1 px-4 text-center text-primary hover:bg-transparent hover:font-bold hover:text-secondary hover:outline hover:outline-secondary"
+					className="w-full border-none bg-secondary py-3 text-center text-primary hover:bg-transparent hover:font-bold hover:text-secondary hover:outline hover:outline-secondary sm:py-1 sm:px-4"
 				>
 					Login
 				</Link>
