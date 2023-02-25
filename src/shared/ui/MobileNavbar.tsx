@@ -15,7 +15,7 @@ export default function MobileNavbar(): JSX.Element {
 			}
 
 			<header
-				className={`fixed bottom-0 left-0 flex w-full flex-col items-center justify-between bg-primary pt-4 transition-transform duration-300 sm:hidden ${
+				className={`fixed bottom-0 left-0 flex w-full flex-col items-center justify-between rounded-t-lg bg-primary pt-4 transition-transform duration-300 sm:hidden ${
 					isMenuOpen ? "translate-y-0" : "translate-y-[100%]"
 				}`}
 			>
