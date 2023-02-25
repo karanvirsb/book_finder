@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Navbar() {
 	return (
-		<header className="flex items-center justify-between pt-2">
+		<header className="hidden items-center justify-between pt-2 sm:flex">
 			<p className="text-xl font-semibold">Book Finder</p>
 			<nav className="flex items-center gap-[clamp(1rem,1rem+3svw,4rem)] text-secondary">
 				{/* TODO create page */}
