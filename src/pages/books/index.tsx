@@ -75,6 +75,7 @@ export async function getServerSideProps(
 		(context.query.page as unknown as string) ?? "0"
 	);
 	const searchQuery = context.query.searchQuery as string;
+	// TODO turn into function
 	const ssrCache = ssrExchange({ isClient: false });
 	const client = initUrqlClient(
 		{
