@@ -19,7 +19,14 @@ export default function Navbar({ classname }: NavbarProps): JSX.Element {
 					Recently Viewed
 				</Link>
 				{/* TODO create search page */}
-				<Link href="books">Browse</Link>
+				<Link
+					href={{
+						pathname: "books",
+						query: { limit: 10, page: 0, searchQuery: "" },
+					}}
+				>
+					Browse
+				</Link>
 				{/* TODO create about page */}
 				<Link href="about">About</Link>
 				{/* TODO create login */}
