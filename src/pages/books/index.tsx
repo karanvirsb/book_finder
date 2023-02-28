@@ -1,12 +1,7 @@
 import React from "react";
 import Layout from "../../shared/ui/Layout";
 import Searchbar from "../../shared/ui/Searchbar";
-import client from "../../urql";
-import {
-	GetBooksByTitleDocument,
-	useGetBooksByTitleQuery,
-} from "../../generated/graphql";
-import { useQuery } from "urql";
+import { useGetBooksByTitleQuery } from "../../generated/graphql";
 import Book from "./components/Book";
 
 export default function Books(): JSX.Element {
