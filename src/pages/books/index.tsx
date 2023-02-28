@@ -100,7 +100,7 @@ export async function getServerSideProps(
 		false
 	);
 
-	const books = client
+	await client
 		?.query<GetBooksByTitleQuery, GetBooksByTitleQueryVariables>(
 			GetBooksByTitleDocument,
 			{ limit, page, searchQuery }
