@@ -3,8 +3,13 @@ documents: "./src/**/*.graphql"
 generates:
   src/generated/graphql.ts:
     config:
-      # withHooks: true
+      withHooks: true
       overwrite: true
+      avoidOptionals:
+        fields: true
+        object: true
+        inputValue: true
+        defaultValue: true
     plugins:
       - typescript
       - typescript-operations
