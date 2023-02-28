@@ -6,18 +6,29 @@ import {
 	type GetBooksByTitleQuery,
 	type InputMaybe,
 	useGetBooksByTitleQuery,
+	GetAllBooksQuery,
+	GetAllBooksQueryVariables,
+	GetBooksByTitleDocument,
+	type GetBooksByTitleQueryVariables,
 } from "../../generated/graphql";
 import Book from "./components/Book";
 import {
 	type InferGetStaticPropsType,
 	type GetServerSidePropsContext,
 } from "next";
-import { type UseQueryResponse } from "urql";
+import {
+	cacheExchange,
+	dedupExchange,
+	fetchExchange,
+	ssrExchange,
+	type UseQueryResponse,
+} from "urql";
+import { type SSRData, initUrqlClient, withUrqlClient } from "next-urql";
 
-export default function Books(
-	books: InferGetStaticPropsType<typeof getServerSideProps>
-): JSX.Element {
-	const [{ data, fetching, error }] = books;
+function Books(): JSX.Element {
+	const [{ data, fetching, error }] = useGetBooksByTitleQuery({
+		variables: { limit: 10, page: 0, searchQuery: "" },
+	});
 	return (
 		<>
 			<main className="max-h-max bg-books-background">
@@ -49,15 +60,14 @@ export default function Books(
 		</>
 	);
 }
-type useGetBooksByTitleQueryReturn = UseQueryResponse<
-	GetBooksByTitleQuery,
-	Exact<{
-		limit: InputMaybe<number>;
-		page: InputMaybe<number>;
-		searchQuery: InputMaybe<string>;
-	}>
->;
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+
+export async function getServerSideProps(
+	context: GetServerSidePropsContext
+): Promise<{
+	props: {
+		urqlState: SSRData;
+	};
+}> {
 	const limit = Number.parseInt(
 		(context.query.limit as unknown as string) ?? "10"
 	);
@@ -65,11 +75,30 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 		(context.query.page as unknown as string) ?? "0"
 	);
 	const searchQuery = context.query.searchQuery as string;
-	const books = useGetBooksByTitleQuery({
-		variables: { limit, page, searchQuery },
-	});
+	const ssrCache = ssrExchange({ isClient: false });
+	const client = initUrqlClient(
+		{
+			url: "http://localhost:3000/api/graphql",
+			exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
+		},
+		false
+	);
+
+	const books = client
+		?.query<GetBooksByTitleQuery, GetBooksByTitleQueryVariables>(
+			GetBooksByTitleDocument,
+			{ limit, page, searchQuery }
+		)
+		.toPromise();
 
 	return {
-		props: books,
+		props: { urqlState: ssrCache.extractData() },
 	};
 }
+
+export default withUrqlClient(
+	(ssr) => ({
+		url: "http://localhost:3000/api/graphql",
+	})
+	// Cannot specify { ssr: true } here so we don't wrap our component in getInitialProps
+)(Books);
