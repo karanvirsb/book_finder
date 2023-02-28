@@ -22,6 +22,8 @@ export default function Book({
 				className="aspect-square w-80 rounded-t-2xl object-cover object-center"
 				src={imageStr}
 				alt={title + " Book Cover"}
+				width={180}
+				height={320}
 			></Image>
 			<div className="p-6">
 				<h1 className="pb-2 text-2xl font-medium text-gray-700">{title}</h1>
