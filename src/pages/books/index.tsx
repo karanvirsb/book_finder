@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Layout from "../../shared/ui/Layout";
 import Searchbar from "../../shared/ui/Searchbar";
 import {
@@ -15,18 +15,20 @@ import { type SSRData, initUrqlClient, withUrqlClient } from "next-urql";
 interface bookParams {
 	limit: number;
 	page: number;
+	searchQuery: string;
 }
 function Books(): JSX.Element {
 	const [bookParams, setBookParams] = useState<bookParams>({
 		limit: 10,
 		page: 0,
+		searchQuery: "",
 	});
-	const [searchQuery, setSearchQuery] = useState("");
+	const searchQueryRef = useRef("");
 	const [{ data, fetching, error }] = useGetBooksByTitleQuery({
 		variables: {
 			limit: bookParams.limit,
 			page: bookParams.page,
-			searchQuery,
+			searchQuery: bookParams.searchQuery,
 		},
 	});
 	return (
@@ -35,8 +37,7 @@ function Books(): JSX.Element {
 				<Layout>
 					<section className="my-10 w-full py-10">
 						<Searchbar
-							searchQuery={searchQuery}
-							setSearchQuery={setSearchQuery}
+							searchQuery={searchQueryRef}
 							submitCb={handleSubmit}
 						></Searchbar>
 					</section>
@@ -64,7 +65,15 @@ function Books(): JSX.Element {
 		</>
 	);
 
-	function handleSubmit(e: React.FormEvent<HTMLFormElement>) {}
+	function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
+		e.preventDefault();
+		setBookParams((prev) => {
+			return {
+				...prev,
+				searchQuery: searchQueryRef.current,
+			};
+		});
+	}
 }
 
 export async function getServerSideProps(
