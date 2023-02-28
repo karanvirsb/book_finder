@@ -28,14 +28,14 @@ export interface RootQueryType {
 }
 
 export interface RootQueryTypeGetAllBooksByPageArgs {
-	limit?: InputMaybe<Scalars["Int"]>;
-	page?: InputMaybe<Scalars["Int"]>;
+	limit: InputMaybe<Scalars["Int"]>;
+	page: InputMaybe<Scalars["Int"]>;
 }
 
 export interface RootQueryTypeGetBooksByTitleResolverArgs {
-	limit?: InputMaybe<Scalars["Int"]>;
-	page?: InputMaybe<Scalars["Int"]>;
-	searchQuery?: InputMaybe<Scalars["String"]>;
+	limit: InputMaybe<Scalars["Int"]>;
+	page: InputMaybe<Scalars["Int"]>;
+	searchQuery: InputMaybe<Scalars["String"]>;
 }
 
 export interface Author {
@@ -75,8 +75,8 @@ export interface Publisher {
 }
 
 export type GetAllBooksQueryVariables = Exact<{
-	limit?: InputMaybe<Scalars["Int"]>;
-	page?: InputMaybe<Scalars["Int"]>;
+	limit: InputMaybe<Scalars["Int"]>;
+	page: InputMaybe<Scalars["Int"]>;
 }>;
 
 export interface GetAllBooksQuery {
@@ -97,9 +97,9 @@ export interface GetAllBooksQuery {
 }
 
 export type GetBooksByTitleQueryVariables = Exact<{
-	limit?: InputMaybe<Scalars["Int"]>;
-	page?: InputMaybe<Scalars["Int"]>;
-	searchQuery?: InputMaybe<Scalars["String"]>;
+	limit: InputMaybe<Scalars["Int"]>;
+	page: InputMaybe<Scalars["Int"]>;
+	searchQuery: InputMaybe<Scalars["String"]>;
 }>;
 
 export interface GetBooksByTitleQuery {
