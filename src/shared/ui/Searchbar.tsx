@@ -1,14 +1,12 @@
-import React, { type SetStateAction } from "react";
+import React from "react";
 
 interface ISearchbar {
-	setSearchQuery: React.Dispatch<SetStateAction<string>>;
-	searchQuery: string;
+	searchQuery: React.MutableRefObject<string>;
 	submitCb: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 export default function Searchbar({
 	searchQuery,
-	setSearchQuery,
 	submitCb,
 }: ISearchbar): JSX.Element {
 	return (
@@ -21,9 +19,8 @@ export default function Searchbar({
 			<input
 				className="min-h-[35px] flex-grow rounded-full border-none px-2 outline outline-1 outline-secondary"
 				placeholder="Search for Books"
-				value={searchQuery}
 				onChange={(e) => {
-					setSearchQuery(e.target.value);
+					searchQuery.current = e.target.value;
 				}}
 			/>
 			<button
