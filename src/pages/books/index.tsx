@@ -15,19 +15,18 @@ import { type SSRData, initUrqlClient, withUrqlClient } from "next-urql";
 interface bookParams {
 	limit: number;
 	page: number;
-	searchQuery: string;
 }
 function Books(): JSX.Element {
 	const [bookParams, setBookParams] = useState<bookParams>({
 		limit: 10,
 		page: 0,
-		searchQuery: "",
 	});
+	const [searchQuery, setSearchQuery] = useState("");
 	const [{ data, fetching, error }] = useGetBooksByTitleQuery({
 		variables: {
 			limit: bookParams.limit,
 			page: bookParams.page,
-			searchQuery: bookParams.searchQuery,
+			searchQuery,
 		},
 	});
 	return (
@@ -35,7 +34,11 @@ function Books(): JSX.Element {
 			<main className="max-h-max bg-books-background">
 				<Layout>
 					<section className="my-10 w-full py-10">
-						<Searchbar></Searchbar>
+						<Searchbar
+							searchQuery={searchQuery}
+							setSearchQuery={setSearchQuery}
+							submitCb={handleSubmit}
+						></Searchbar>
 					</section>
 				</Layout>
 			</main>
@@ -60,6 +63,8 @@ function Books(): JSX.Element {
 			</section>
 		</>
 	);
+
+	function handleSubmit(e: React.FormEvent<HTMLFormElement>) {}
 }
 
 export async function getServerSideProps(
