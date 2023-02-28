@@ -1,6 +1,16 @@
-import React from "react";
+import React, { type SetStateAction } from "react";
 
-export default function Searchbar(): JSX.Element {
+interface ISearchbar {
+	setSearchQuery: React.Dispatch<SetStateAction<string>>;
+	searchQuery: string;
+	submitCb: () => void;
+}
+
+export default function Searchbar({
+	searchQuery,
+	setSearchQuery,
+	submitCb,
+}: ISearchbar): JSX.Element {
 	return (
 		<form className="flex flex-col gap-3 sm:flex-row">
 			<input
