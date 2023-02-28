@@ -17,12 +17,12 @@ export default function Books(): JSX.Element {
 		<>
 			<main className="max-h-max bg-books-background">
 				<Layout>
-					<section className="my-10 w-full  py-10">
+					<section className="my-10 w-full py-10">
 						<Searchbar></Searchbar>
 					</section>
 				</Layout>
 			</main>
-			<section className=" grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+			<section className="grid grid-cols-1 place-items-center gap-4 px-[clamp(2rem,1rem+7vw,7rem)] xl:grid-cols-3 2xl:grid-cols-4">
 				{/* // add spinner */}
 				{fetching ? <p>Loading...</p> : null}
 				{error != null ? <p>Oh no ... {error.message}</p> : null}
