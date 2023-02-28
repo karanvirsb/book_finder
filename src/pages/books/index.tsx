@@ -1,33 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../../shared/ui/Layout";
 import Searchbar from "../../shared/ui/Searchbar";
 import {
-	type Exact,
 	type GetBooksByTitleQuery,
-	type InputMaybe,
 	useGetBooksByTitleQuery,
-	GetAllBooksQuery,
-	GetAllBooksQueryVariables,
 	GetBooksByTitleDocument,
 	type GetBooksByTitleQueryVariables,
 } from "../../generated/graphql";
 import Book from "./components/Book";
-import {
-	type InferGetStaticPropsType,
-	type GetServerSidePropsContext,
-} from "next";
-import {
-	cacheExchange,
-	dedupExchange,
-	fetchExchange,
-	ssrExchange,
-	type UseQueryResponse,
-} from "urql";
+import { type GetServerSidePropsContext } from "next";
+import { cacheExchange, dedupExchange, fetchExchange, ssrExchange } from "urql";
 import { type SSRData, initUrqlClient, withUrqlClient } from "next-urql";
 
+interface bookParams {
+	limit: number;
+	page: number;
+	searchQuery: string;
+}
 function Books(): JSX.Element {
+	const [bookParams, setBookParams] = useState<bookParams>({
+		limit: 10,
+		page: 0,
+		searchQuery: "",
+	});
 	const [{ data, fetching, error }] = useGetBooksByTitleQuery({
-		variables: { limit: 10, page: 0, searchQuery: "" },
+		variables: {
+			limit: bookParams.limit,
+			page: bookParams.page,
+			searchQuery: bookParams.searchQuery,
+		},
 	});
 	return (
 		<>
