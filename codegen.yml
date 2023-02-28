@@ -13,5 +13,5 @@ generates:
     plugins:
       - typescript
       - typescript-operations
-      - typescript-graphql-request
-      # - typescript-urql
+      # - typescript-graphql-request
+      - typescript-urql
