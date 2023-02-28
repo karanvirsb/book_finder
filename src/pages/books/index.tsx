@@ -1,13 +1,23 @@
 import React from "react";
 import Layout from "../../shared/ui/Layout";
 import Searchbar from "../../shared/ui/Searchbar";
-import { useGetBooksByTitleQuery } from "../../generated/graphql";
+import {
+	type Exact,
+	type GetBooksByTitleQuery,
+	type InputMaybe,
+	useGetBooksByTitleQuery,
+} from "../../generated/graphql";
 import Book from "./components/Book";
+import {
+	type InferGetStaticPropsType,
+	type GetServerSidePropsContext,
+} from "next";
+import { type UseQueryResponse } from "urql";
 
-export default function Books(): JSX.Element {
-	const [{ data, fetching, error }] = useGetBooksByTitleQuery({
-		variables: { limit: 10, page: 0, searchQuery: "" },
-	});
+export default function Books(
+	books: InferGetStaticPropsType<typeof getServerSideProps>
+): JSX.Element {
+	const [{ data, fetching, error }] = books;
 	return (
 		<>
 			<main className="max-h-max bg-books-background">
@@ -38,4 +48,28 @@ export default function Books(): JSX.Element {
 			</section>
 		</>
 	);
+}
+type useGetBooksByTitleQueryReturn = UseQueryResponse<
+	GetBooksByTitleQuery,
+	Exact<{
+		limit: InputMaybe<number>;
+		page: InputMaybe<number>;
+		searchQuery: InputMaybe<string>;
+	}>
+>;
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+	const limit = Number.parseInt(
+		(context.query.limit as unknown as string) ?? "10"
+	);
+	const page = Number.parseInt(
+		(context.query.page as unknown as string) ?? "0"
+	);
+	const searchQuery = context.query.searchQuery as string;
+	const books = useGetBooksByTitleQuery({
+		variables: { limit, page, searchQuery },
+	});
+
+	return {
+		props: books,
+	};
 }
