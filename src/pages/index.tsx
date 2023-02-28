@@ -1,7 +1,11 @@
+import { useRef } from "react";
 import Layout from "../shared/ui/Layout";
 import Searchbar from "../shared/ui/Searchbar";
+import { useRouter } from "next/router";
 
 export default function Home(): JSX.Element {
+	const router = useRouter();
+	const searchQueryRef = useRef("");
 	return (
 		<main className="relative min-h-[100svh] bg-books-background bg-center bg-no-repeat">
 			<Layout classname="relative min-h-[100svh]">
@@ -10,9 +14,27 @@ export default function Home(): JSX.Element {
 						Explore the World of <span className="text-tertiary">Books</span> -
 						Find <span className="text-primary_accent">Yours</span> Now!
 					</h1>
-					<Searchbar></Searchbar>
+					<Searchbar
+						searchQuery={searchQueryRef}
+						submitCb={handleSubmit}
+					></Searchbar>
 				</section>
 			</Layout>
 		</main>
 	);
+
+	function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
+		e.preventDefault();
+
+		router
+			.push(
+				`/books?limit=10&page=0&searchQuery=${encodeURIComponent(
+					searchQueryRef.current
+				)}`
+			)
+			.then((resp) => resp)
+			.catch((err) => {
+				console.log(err);
+			});
+	}
 }
