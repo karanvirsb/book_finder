@@ -22,7 +22,7 @@ export default function Books(): JSX.Element {
 					</section>
 				</Layout>
 			</main>
-			<section className=" grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
+			<section className=" grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
 				{/* // add spinner */}
 				{fetching ? <p>Loading...</p> : null}
 				{error != null ? <p>Oh no ... {error.message}</p> : null}
