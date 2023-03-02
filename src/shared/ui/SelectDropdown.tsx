@@ -2,7 +2,7 @@ import React, { type ChangeEventHandler } from "react";
 
 interface dropdownProps {
 	name: string;
-	children?: React.ReactNode;
+	children: React.ReactNode;
 	onchange: ChangeEventHandler;
 }
 
