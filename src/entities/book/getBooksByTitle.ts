@@ -49,7 +49,7 @@ export function getBooksByTitleDb({ db }: getBooksByTitleDbDependency) {
 		limit,
 		page,
 		searchQuery,
-	}: getBooksByTitle): Promise<getBooksByTitleDbReturn | unknown> {
+	}: getBooksByTitle): Promise<getBooksByTitleDbReturn> {
 		try {
 			const result = await db.books.findMany({
 				skip: page * limit,
@@ -64,8 +64,10 @@ export function getBooksByTitleDb({ db }: getBooksByTitleDbDependency) {
 			});
 			return { books: result, count: totalCount };
 		} catch (error) {
-			console.log(error);
-			return error;
+			if (error instanceof Error) {
+				console.log(error);
+				throw new Error(error.message);
+			}
 		}
 	};
 }
