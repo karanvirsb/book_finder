@@ -2,16 +2,16 @@ import React, { type ChangeEventHandler } from "react";
 
 interface dropdownProps {
 	name: string;
-	children: React.ReactNode;
 	onchange: ChangeEventHandler;
-	defaultvalue?: string[];
+	defaultvalue: number;
+	options: Array<{ name: string; value: any }>;
 }
 
 export default function SelectDropdown({
 	name,
-	children,
 	onchange,
 	defaultvalue,
+	options,
 }: dropdownProps): JSX.Element {
 	return (
 		<>
@@ -20,9 +20,21 @@ export default function SelectDropdown({
 				className="relative ml-4 inline-block rounded-md bg-white px-3 py-2 text-left text-sm font-semibold text-secondary hover:bg-gray-50 hover:text-primary_accent"
 				id={`dropdown-${name}`}
 				onChange={onchange}
-				defaultValue={defaultvalue ?? []}
+				defaultValue={`${defaultvalue}`}
 			>
-				{children}
+				{options.map((obj) => {
+					return (
+						<option
+							key={name}
+							className="mb-3 rounded-md px-4 py-2 text-lg text-gray-700"
+							role="menuitem"
+							tabIndex={-1}
+							value={obj.value}
+						>
+							{obj.name}
+						</option>
+					);
+				})}
 			</select>
 		</>
 	);
