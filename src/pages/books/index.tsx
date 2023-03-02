@@ -20,16 +20,16 @@ interface bookParams {
 }
 export default function Books(): JSX.Element {
 	const router = useRouter();
-	const [bookParams, setBookParams] = useState<bookParams>({
-		limit: Number.parseInt(router.query.limit as string) ?? 12,
-		page: Number.parseInt(router.query.page as string) ?? 0,
-	});
-	const searchQueryRef = useRef("");
 
+	const searchQueryRef = useRef("");
+	const limitQueryRef = useRef(12);
+	const pageQueryRef = useRef(0);
 	const [{ data, fetching, error }] = useGetBooksByTitleQuery({
 		variables: {
-			limit: bookParams.limit,
-			page: bookParams.page,
+			limit:
+				Number.parseInt(router.query.limit as string) ?? limitQueryRef.current,
+			page:
+				Number.parseInt(router.query.page as string) ?? pageQueryRef.current,
 			searchQuery:
 				(router.query.searchQuery as string) ?? searchQueryRef.current,
 		},
@@ -106,16 +106,17 @@ export default function Books(): JSX.Element {
 	function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
 		e.preventDefault();
 		void router.push(
-			`/books?limit=${bookParams.limit}&page=${
-				bookParams.page
+			`/books?limit=${limitQueryRef.current}&page=${
+				pageQueryRef.current
 			}&searchQuery=${encodeURIComponent(searchQueryRef.current)}`
 		);
 	}
 
 	function handleSelectChange(e: React.ChangeEvent<HTMLSelectElement>): void {
+		limitQueryRef.current = Number.parseInt(e.target.value.trim());
 		void router.push(
-			`/books?limit=${Number.parseInt(e.target.value)}&page=${
-				bookParams.page
+			`/books?limit=${Number.parseInt(e.target.value.trim())}&page=${
+				pageQueryRef.current
 			}&searchQuery=${encodeURIComponent(searchQueryRef.current)}`
 		);
 	}
