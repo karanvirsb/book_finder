@@ -49,7 +49,7 @@ export default function Books(): JSX.Element {
 				<div className="w-full">
 					<SelectDropdown name="Per Page">
 						<option
-							className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:outline hover:outline-1"
+							className="mb-3 rounded-md px-4 py-2 text-lg text-gray-700"
 							role="menuitem"
 							tabIndex={-1}
 							value={10}
@@ -57,7 +57,7 @@ export default function Books(): JSX.Element {
 							12
 						</option>
 						<option
-							className="block px-4 py-2 text-sm text-gray-700"
+							className="block px-4 py-2 text-lg text-gray-700"
 							role="menuitem"
 							tabIndex={-1}
 							value={16}
@@ -65,7 +65,7 @@ export default function Books(): JSX.Element {
 							16
 						</option>
 						<option
-							className="block px-4 py-2 text-sm text-gray-700"
+							className="block px-4 py-2 text-lg text-gray-700"
 							role="menuitem"
 							tabIndex={-1}
 							value={20}
