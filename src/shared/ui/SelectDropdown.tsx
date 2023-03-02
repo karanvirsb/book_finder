@@ -5,7 +5,7 @@ interface dropdownProps {
 	children?: React.ReactNode;
 }
 
-export default function Dropdown({ name, children }: dropdownProps) {
+export default function SelectDropdown({ name, children }: dropdownProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<div className="relative inline-block text-left">
