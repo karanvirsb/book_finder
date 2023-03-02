@@ -26,15 +26,10 @@ export default function Home(): JSX.Element {
 	function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
 		e.preventDefault();
 
-		router
-			.push(
-				`/books?limit=10&page=0&searchQuery=${encodeURIComponent(
-					searchQueryRef.current
-				)}`
-			)
-			.then((resp) => resp)
-			.catch((err) => {
-				console.log(err);
-			});
+		void router.push(
+			`/books?limit=12&page=0&searchQuery=${encodeURIComponent(
+				searchQueryRef.current
+			)}`
+		);
 	}
 }
