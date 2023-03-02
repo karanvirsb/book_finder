@@ -2,6 +2,7 @@ import { GraphQLInt, GraphQLList, GraphQLString } from "graphql";
 import { type resolver } from "../../types/resolvers";
 import BookType from "../typedef/book-typedef";
 import { getBooksByTitleUseCase } from "../../../entities/book";
+import { type getBooksByTitleReturn } from "../../../entities/book/getBooksByTitle";
 
 interface args {
 	limit: number;
@@ -16,7 +17,7 @@ const getBooksByTitleResolver: resolver = {
 		page: { type: GraphQLInt },
 		searchQuery: { type: GraphQLString },
 	},
-	async resolve(_, args: args) {
+	async resolve(_, args: args): Promise<getBooksByTitleReturn> {
 		return await getBooksByTitleUseCase(args);
 	},
 };
