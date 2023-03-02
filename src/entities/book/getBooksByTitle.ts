@@ -23,20 +23,19 @@ export interface IGetBooksByTitle {
 		limit,
 		page,
 		searchQuery,
-	}: getBooksByTitle) => Promise<getBooksByTitleDbReturn | unknown>;
+	}: getBooksByTitle) => Promise<getBooksByTitleDbReturn>;
 }
 
 export function getBooksByTitleUC({ getBooksByTitleDB }: IGetBooksByTitle) {
 	return async function (groupInfo: getBooksByTitle) {
 		try {
 			await getBooksByTitleSchema.parseAsync(groupInfo);
-			return await getBooksByTitleDB(groupInfo);
 		} catch (error) {
 			if (error instanceof ZodError) {
-				return error.format();
+				throw new ZodError(error.issues);
 			}
-			return error;
 		}
+		return await getBooksByTitleDB(groupInfo);
 	};
 }
 
@@ -50,8 +49,9 @@ export function getBooksByTitleDb({ db }: getBooksByTitleDbDependency) {
 		page,
 		searchQuery,
 	}: getBooksByTitle): Promise<getBooksByTitleDbReturn> {
+		let result, totalCount;
 		try {
-			const result = await db.books.findMany({
+			result = await db.books.findMany({
 				skip: page * limit,
 				take: limit,
 				include: {
@@ -59,7 +59,7 @@ export function getBooksByTitleDb({ db }: getBooksByTitleDbDependency) {
 				},
 				where: { title: { contains: searchQuery } },
 			});
-			const totalCount = await db.books.count({
+			totalCount = await db.books.count({
 				where: { title: { contains: searchQuery } },
 			});
 			return { books: result, count: totalCount };
