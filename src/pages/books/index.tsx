@@ -16,21 +16,20 @@ import { useRouter } from "next/router";
 interface bookParams {
 	limit: number;
 	page: number;
-	searchQuery: string;
 }
 export default function Books(): JSX.Element {
 	const router = useRouter();
 	const [bookParams, setBookParams] = useState<bookParams>({
 		limit: Number.parseInt(router.query.limit as string) ?? 10,
 		page: Number.parseInt(router.query.page as string) ?? 0,
-		searchQuery: router.query.searchQuery as string,
 	});
 	const searchQueryRef = useRef("");
+
 	const [{ data, fetching, error }] = useGetBooksByTitleQuery({
 		variables: {
-			limit: bookParams.limit,
-			page: bookParams.page,
-			searchQuery: bookParams.searchQuery,
+			limit: Number.parseInt(router.query.limit as string) ?? 10,
+			page: Number.parseInt(router.query.page as string) ?? 0,
+			searchQuery: router.query.searchQuery as string,
 		},
 	});
 	return (
@@ -74,12 +73,9 @@ export default function Books(): JSX.Element {
 
 	function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
 		e.preventDefault();
-		setBookParams((prev) => {
-			return {
-				...prev,
-				searchQuery: searchQueryRef.current,
-			};
-		});
+		void router.push(
+			`/books?limit=${bookParams.limit}&page=${bookParams.page}&searchQuery=${searchQueryRef.current}`
+		);
 	}
 }
 
