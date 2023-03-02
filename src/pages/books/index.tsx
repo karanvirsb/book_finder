@@ -21,16 +21,17 @@ interface bookParams {
 export default function Books(): JSX.Element {
 	const router = useRouter();
 	const [bookParams, setBookParams] = useState<bookParams>({
-		limit: Number.parseInt(router.query.limit as string) ?? 10,
+		limit: Number.parseInt(router.query.limit as string) ?? 12,
 		page: Number.parseInt(router.query.page as string) ?? 0,
 	});
 	const searchQueryRef = useRef("");
 
 	const [{ data, fetching, error }] = useGetBooksByTitleQuery({
 		variables: {
-			limit: Number.parseInt(router.query.limit as string) ?? 12,
-			page: Number.parseInt(router.query.page as string) ?? 0,
-			searchQuery: router.query.searchQuery as string,
+			limit: bookParams.limit,
+			page: bookParams.page,
+			searchQuery:
+				(router.query.searchQuery as string) ?? searchQueryRef.current,
 		},
 	});
 	return (
@@ -47,12 +48,12 @@ export default function Books(): JSX.Element {
 			</main>
 			<section className="px-[clamp(2rem,1rem+7vw,7rem)]">
 				<div className="flex w-full items-center justify-end">
-					<SelectDropdown name="Per Page">
+					<SelectDropdown name="Per Page" onchange={handleSelectChange}>
 						<option
 							className="mb-3 rounded-md px-4 py-2 text-lg text-gray-700"
 							role="menuitem"
 							tabIndex={-1}
-							value={10}
+							value={12}
 						>
 							12
 						</option>
@@ -106,6 +107,14 @@ export default function Books(): JSX.Element {
 		e.preventDefault();
 		void router.push(
 			`/books?limit=${bookParams.limit}&page=${
+				bookParams.page
+			}&searchQuery=${encodeURIComponent(searchQueryRef.current)}`
+		);
+	}
+
+	function handleSelectChange(e: React.ChangeEvent<HTMLSelectElement>): void {
+		void router.push(
+			`/books?limit=${Number.parseInt(e.target.value)}&page=${
 				bookParams.page
 			}&searchQuery=${encodeURIComponent(searchQueryRef.current)}`
 		);
