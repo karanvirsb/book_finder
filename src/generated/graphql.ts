@@ -20,10 +20,16 @@ export interface Scalars {
 	JSON: any;
 }
 
+export interface GetBooksByTitlePayload {
+	__typename?: "GetBooksByTitlePayload";
+	books?: Maybe<Array<Maybe<Book>>>;
+	count?: Maybe<Scalars["Int"]>;
+}
+
 export interface RootQueryType {
 	__typename?: "RootQueryType";
 	getAllBooksByPage?: Maybe<Array<Maybe<Book>>>;
-	getBooksByTitleResolver?: Maybe<Array<Maybe<Book>>>;
+	getBooksByTitleResolver?: Maybe<GetBooksByTitlePayload>;
 	getHelloWorld?: Maybe<Scalars["String"]>;
 }
 
@@ -104,19 +110,23 @@ export type GetBooksByTitleQueryVariables = Exact<{
 
 export interface GetBooksByTitleQuery {
 	__typename?: "RootQueryType";
-	getBooksByTitleResolver?: Array<{
-		__typename?: "book";
-		asin?: string | null;
-		description?: string | null;
-		image_url?: string | null;
-		rating?: string | null;
-		title?: string | null;
-		author?: {
-			__typename?: "author";
-			name?: string | null;
-			id?: number | null;
-		} | null;
-	} | null> | null;
+	getBooksByTitleResolver?: {
+		__typename?: "GetBooksByTitlePayload";
+		count?: number | null;
+		books?: Array<{
+			__typename?: "book";
+			asin?: string | null;
+			description?: string | null;
+			image_url?: string | null;
+			rating?: string | null;
+			title?: string | null;
+			author?: {
+				__typename?: "author";
+				name?: string | null;
+				id?: number | null;
+			} | null;
+		} | null> | null;
+	} | null;
 }
 
 export const GetAllBooksDocument = gql`
@@ -150,15 +160,18 @@ export const GetBooksByTitleDocument = gql`
 			page: $page
 			searchQuery: $searchQuery
 		) {
-			asin
-			author {
-				name
-				id
+			books {
+				asin
+				author {
+					name
+					id
+				}
+				description
+				image_url
+				rating
+				title
 			}
-			description
-			image_url
-			rating
-			title
+			count
 		}
 	}
 `;
