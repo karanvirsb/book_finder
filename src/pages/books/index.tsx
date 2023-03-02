@@ -46,7 +46,7 @@ export default function Books(): JSX.Element {
 				</Layout>
 			</main>
 			<section className="px-[clamp(2rem,1rem+7vw,7rem)]">
-				<div className="w-full">
+				<div className="flex w-full items-center justify-end">
 					<SelectDropdown name="Per Page">
 						<option
 							className="mb-3 rounded-md px-4 py-2 text-lg text-gray-700"
