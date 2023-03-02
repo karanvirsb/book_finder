@@ -21,17 +21,19 @@ interface bookParams {
 export default function Books(): JSX.Element {
 	const router = useRouter();
 
-	const searchQueryRef = useRef("");
-	const limitQueryRef = useRef(12);
-	const pageQueryRef = useRef(0);
+	const searchQueryRef = useRef<string>("");
+	const limitQueryRef = useRef<number>(12);
+	const pageQueryRef = useRef<number>(0);
+	searchQueryRef.current = (router.query.searchQuery as string) ?? "";
+	limitQueryRef.current = Number.parseInt(router.query.limit as string) ?? 12;
+	pageQueryRef.current = Number.parseInt(router.query.page as string) ?? 0;
+
+	console.log(limitQueryRef, searchQueryRef, pageQueryRef);
 	const [{ data, fetching, error }] = useGetBooksByTitleQuery({
 		variables: {
-			limit:
-				Number.parseInt(router.query.limit as string) ?? limitQueryRef.current,
-			page:
-				Number.parseInt(router.query.page as string) ?? pageQueryRef.current,
-			searchQuery:
-				(router.query.searchQuery as string) ?? searchQueryRef.current,
+			limit: limitQueryRef.current,
+			page: pageQueryRef.current,
+			searchQuery: searchQueryRef.current,
 		},
 	});
 	return (
@@ -48,32 +50,16 @@ export default function Books(): JSX.Element {
 			</main>
 			<section className="px-[clamp(2rem,1rem+7vw,7rem)]">
 				<div className="flex w-full items-center justify-end">
-					<SelectDropdown name="Per Page" onchange={handleSelectChange}>
-						<option
-							className="mb-3 rounded-md px-4 py-2 text-lg text-gray-700"
-							role="menuitem"
-							tabIndex={-1}
-							value={12}
-						>
-							12
-						</option>
-						<option
-							className="block px-4 py-2 text-lg text-gray-700"
-							role="menuitem"
-							tabIndex={-1}
-							value={16}
-						>
-							16
-						</option>
-						<option
-							className="block px-4 py-2 text-lg text-gray-700"
-							role="menuitem"
-							tabIndex={-1}
-							value={20}
-						>
-							20
-						</option>
-					</SelectDropdown>
+					<SelectDropdown
+						name="Per Page"
+						onchange={handleSelectChange}
+						defaultvalue={limitQueryRef.current}
+						options={[
+							{ name: "12", value: 12 },
+							{ name: "16", value: 16 },
+							{ name: "20", value: 20 },
+						]}
+					></SelectDropdown>
 				</div>
 				<article className="grid grid-cols-1 place-items-center gap-4 xl:grid-cols-3 2xl:grid-cols-4">
 					{/* // add spinner */}
