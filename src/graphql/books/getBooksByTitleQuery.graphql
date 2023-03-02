@@ -4,14 +4,17 @@ query getBooksByTitle($limit: Int, $page: Int, $searchQuery: String) {
 		page: $page
 		searchQuery: $searchQuery
 	) {
-		asin
-		author {
-			name
-			id
+		books {
+			asin
+			author {
+				name
+				id
+			}
+			description
+			image_url
+			rating
+			title
 		}
-		description
-		image_url
-		rating
-		title
 	}
+	count
 }
