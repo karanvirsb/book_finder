@@ -7,18 +7,13 @@ import {
 	type IGetBooksByTitle,
 	getBooksByTitleDb,
 	getBooksByTitleUC,
+	type getBooksByTitleDbReturn,
 } from "./getBooksByTitle";
 
 const getBooksByTitle: IGetBooksByTitle["getBooksByTitleDB"] =
 	getBooksByTitleDb({
 		db: prisma,
 	});
-
-type getBooksByTitleReturn = Array<
-	Books & {
-		author: Author;
-	}
->;
 
 describe("Testing getBooksByTitle UC and DB Access", () => {
 	afterAll(() => {
@@ -30,17 +25,21 @@ describe("Testing getBooksByTitle UC and DB Access", () => {
 			limit: 1,
 			page: 0,
 			searchQuery: "The",
-		})) as getBooksByTitleReturn;
+		})) as getBooksByTitleDbReturn;
 		console.log(result);
-		expect(result.length).toBe(1);
-		expect(result[0]).toHaveProperty("author");
-		expect(result[0]).toHaveProperty("asin");
+		expect(result.books.length >= 1).toBeTruthy();
+		expect(result.books[0]).toHaveProperty("author");
+		expect(result.books[0]).toHaveProperty("asin");
+		expect(result.count > 1).toBeTruthy();
 	});
 
 	it("Testing out use case", async () => {
 		const getBooksByTitleMocked = vi.fn(getBooksByTitle);
 		const fakeBook = makeFakeBook();
-		getBooksByTitleMocked.mockResolvedValueOnce([fakeBook]);
+		getBooksByTitleMocked.mockResolvedValueOnce({
+			books: [fakeBook],
+			count: 1,
+		});
 
 		// intializing use case
 		const getAllBooksByPageUseCase = getBooksByTitleUC({
@@ -51,8 +50,9 @@ describe("Testing getBooksByTitle UC and DB Access", () => {
 			limit: 1,
 			page: 0,
 			searchQuery: "The",
-		})) as getBooksByTitleReturn;
+		})) as getBooksByTitleDbReturn;
 		console.log(result);
-		expect(result[0]).toMatchObject(fakeBook);
+		expect(result.books[0]).toMatchObject(fakeBook);
+		expect(result.count).toBe(1);
 	});
 });
