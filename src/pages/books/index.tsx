@@ -2,15 +2,15 @@ import React, { useRef, useState } from "react";
 import Layout from "../../shared/ui/Layout";
 import Searchbar from "../../shared/ui/Searchbar";
 import {
-	type GetBooksByTitleQuery,
+	// type GetBooksByTitleQuery,
 	useGetBooksByTitleQuery,
-	GetBooksByTitleDocument,
-	type GetBooksByTitleQueryVariables,
+	// GetBooksByTitleDocument,
+	// type GetBooksByTitleQueryVariables,
 } from "../../generated/graphql";
 import Book from "./components/Book";
-import { type GetServerSidePropsContext } from "next";
-import { cacheExchange, dedupExchange, fetchExchange, ssrExchange } from "urql";
-import { type SSRData, initUrqlClient, withUrqlClient } from "next-urql";
+// import { type GetServerSidePropsContext } from "next";
+// import { cacheExchange, dedupExchange, fetchExchange, ssrExchange } from "urql";
+// import { type SSRData, initUrqlClient, withUrqlClient } from "next-urql";
 import { useRouter } from "next/router";
 
 interface bookParams {
