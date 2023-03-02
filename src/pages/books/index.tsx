@@ -12,7 +12,7 @@ import Book from "./components/Book";
 // import { cacheExchange, dedupExchange, fetchExchange, ssrExchange } from "urql";
 // import { type SSRData, initUrqlClient, withUrqlClient } from "next-urql";
 import { useRouter } from "next/router";
-import Dropdown from "../../shared/ui/Dropdown";
+import SelectDropdown from "../../shared/ui/SelectDropdown";
 
 interface bookParams {
 	limit: number;
@@ -47,7 +47,7 @@ export default function Books(): JSX.Element {
 			</main>
 			<section className="px-[clamp(2rem,1rem+7vw,7rem)]">
 				<div className="w-full">
-					<Dropdown name="Per Page">
+					<SelectDropdown name="Per Page">
 						<option
 							className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:outline hover:outline-1"
 							role="menuitem"
@@ -72,7 +72,7 @@ export default function Books(): JSX.Element {
 						>
 							20
 						</option>
-					</Dropdown>
+					</SelectDropdown>
 				</div>
 				<article className="grid grid-cols-1 place-items-center gap-4 xl:grid-cols-3 2xl:grid-cols-4">
 					{/* // add spinner */}
