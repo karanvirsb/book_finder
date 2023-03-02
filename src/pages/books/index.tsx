@@ -12,6 +12,7 @@ import Book from "./components/Book";
 // import { cacheExchange, dedupExchange, fetchExchange, ssrExchange } from "urql";
 // import { type SSRData, initUrqlClient, withUrqlClient } from "next-urql";
 import { useRouter } from "next/router";
+import Dropdown from "../../shared/ui/Dropdown";
 
 interface bookParams {
 	limit: number;
@@ -44,29 +45,59 @@ export default function Books(): JSX.Element {
 					</section>
 				</Layout>
 			</main>
-			<section className="grid grid-cols-1 place-items-center gap-4 px-[clamp(2rem,1rem+7vw,7rem)] xl:grid-cols-3 2xl:grid-cols-4">
-				{/* // add spinner */}
-				{fetching ? (
-					<p>Loading...</p>
-				) : error != null ? (
-					<p>Oh no ... {error.message}</p>
-				) : data?.getBooksByTitleResolver != null &&
-				  data.getBooksByTitleResolver.length > 0 ? (
-					data.getBooksByTitleResolver.map((book) => {
-						return (
-							<Book
-								asin={book?.asin ?? ""}
-								author={book?.author?.name ?? ""}
-								description={book?.description ?? ""}
-								imageStr={book?.image_url ?? ""}
-								title={book?.title ?? ""}
-								key={book?.asin}
-							></Book>
-						);
-					})
-				) : (
-					<p>Could not find any books.</p>
-				)}
+			<section className="px-[clamp(2rem,1rem+7vw,7rem)]">
+				<div className="w-full">
+					<Dropdown name="Per Page">
+						<option
+							className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:outline hover:outline-1"
+							role="menuitem"
+							tabIndex={-1}
+							value={10}
+						>
+							12
+						</option>
+						<option
+							className="block px-4 py-2 text-sm text-gray-700"
+							role="menuitem"
+							tabIndex={-1}
+							value={16}
+						>
+							16
+						</option>
+						<option
+							className="block px-4 py-2 text-sm text-gray-700"
+							role="menuitem"
+							tabIndex={-1}
+							value={20}
+						>
+							20
+						</option>
+					</Dropdown>
+				</div>
+				<article className="grid grid-cols-1 place-items-center gap-4 xl:grid-cols-3 2xl:grid-cols-4">
+					{/* // add spinner */}
+					{fetching ? (
+						<p>Loading...</p>
+					) : error != null ? (
+						<p>Oh no ... {error.message}</p>
+					) : data?.getBooksByTitleResolver != null &&
+					  data.getBooksByTitleResolver.length > 0 ? (
+						data.getBooksByTitleResolver.map((book) => {
+							return (
+								<Book
+									asin={book?.asin ?? ""}
+									author={book?.author?.name ?? ""}
+									description={book?.description ?? ""}
+									imageStr={book?.image_url ?? ""}
+									title={book?.title ?? ""}
+									key={book?.asin}
+								></Book>
+							);
+						})
+					) : (
+						<p>Could not find any books.</p>
+					)}
+				</article>
 			</section>
 		</>
 	);
