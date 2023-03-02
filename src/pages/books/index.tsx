@@ -27,7 +27,7 @@ export default function Books(): JSX.Element {
 
 	const [{ data, fetching, error }] = useGetBooksByTitleQuery({
 		variables: {
-			limit: Number.parseInt(router.query.limit as string) ?? 10,
+			limit: Number.parseInt(router.query.limit as string) ?? 12,
 			page: Number.parseInt(router.query.page as string) ?? 0,
 			searchQuery: router.query.searchQuery as string,
 		},
@@ -74,7 +74,9 @@ export default function Books(): JSX.Element {
 	function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
 		e.preventDefault();
 		void router.push(
-			`/books?limit=${bookParams.limit}&page=${bookParams.page}&searchQuery=${searchQueryRef.current}`
+			`/books?limit=${bookParams.limit}&page=${
+				bookParams.page
+			}&searchQuery=${encodeURIComponent(searchQueryRef.current)}`
 		);
 	}
 }
