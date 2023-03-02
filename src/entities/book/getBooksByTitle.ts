@@ -9,15 +9,21 @@ const getBooksByTitleSchema = z.object({
 
 export type getBooksByTitle = z.infer<typeof getBooksByTitleSchema>;
 
-export interface IGetBooksByTitle {
-	getBooksByTitleDB: ({ limit, page, searchQuery }: getBooksByTitle) => Promise<
-		| Array<
-				Books & {
-					author: Author;
-				}
-		  >
-		| unknown
+export interface getBooksByTitleDbReturn {
+	books: Array<
+		Books & {
+			author: Author;
+		}
 	>;
+	count: number;
+}
+
+export interface IGetBooksByTitle {
+	getBooksByTitleDB: ({
+		limit,
+		page,
+		searchQuery,
+	}: getBooksByTitle) => Promise<getBooksByTitleDbReturn | unknown>;
 }
 
 export function getBooksByTitleUC({ getBooksByTitleDB }: IGetBooksByTitle) {
@@ -43,14 +49,7 @@ export function getBooksByTitleDb({ db }: getBooksByTitleDbDependency) {
 		limit,
 		page,
 		searchQuery,
-	}: getBooksByTitle): Promise<
-		| Array<
-				Books & {
-					author: Author;
-				}
-		  >
-		| unknown
-	> {
+	}: getBooksByTitle): Promise<getBooksByTitleDbReturn | unknown> {
 		try {
 			const result = await db.books.findMany({
 				skip: page * limit,
@@ -60,8 +59,10 @@ export function getBooksByTitleDb({ db }: getBooksByTitleDbDependency) {
 				},
 				where: { title: { contains: searchQuery } },
 			});
-
-			return result;
+			const totalCount = await db.books.count({
+				where: { title: { contains: searchQuery } },
+			});
+			return { books: result, count: totalCount };
 		} catch (error) {
 			console.log(error);
 			return error;
