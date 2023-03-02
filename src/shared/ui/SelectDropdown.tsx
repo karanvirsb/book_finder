@@ -25,7 +25,7 @@ export default function SelectDropdown({
 				{options.map((obj) => {
 					return (
 						<option
-							key={name}
+							key={obj.name}
 							className="mb-3 rounded-md px-4 py-2 text-lg text-gray-700"
 							role="menuitem"
 							tabIndex={-1}
