@@ -24,7 +24,7 @@ export default function Navbar({ classname }: NavbarProps): JSX.Element {
 				<Link
 					href={{
 						pathname: "books",
-						query: { limit: 10, page: 0, searchQuery: "" },
+						query: { limit: 12, page: 0, searchQuery: "" },
 					}}
 				>
 					Browse
