@@ -15,6 +15,6 @@ query getBooksByTitle($limit: Int, $page: Int, $searchQuery: String) {
 			rating
 			title
 		}
+		count
 	}
-	count
 }
