@@ -9,7 +9,7 @@ const getBooksByTitleSchema = z.object({
 
 export type getBooksByTitle = z.infer<typeof getBooksByTitleSchema>;
 
-export interface getBooksByTitleDbReturn {
+export interface getBooksByTitleReturn {
 	books: Array<
 		Books & {
 			author: Author;
@@ -23,7 +23,7 @@ export interface IGetBooksByTitle {
 		limit,
 		page,
 		searchQuery,
-	}: getBooksByTitle) => Promise<getBooksByTitleDbReturn>;
+	}: getBooksByTitle) => Promise<getBooksByTitleReturn>;
 }
 
 export function getBooksByTitleUC({ getBooksByTitleDB }: IGetBooksByTitle) {
@@ -48,7 +48,7 @@ export function getBooksByTitleDb({ db }: getBooksByTitleDbDependency) {
 		limit,
 		page,
 		searchQuery,
-	}: getBooksByTitle): Promise<getBooksByTitleDbReturn> {
+	}: getBooksByTitle): Promise<getBooksByTitleReturn> {
 		let result, totalCount;
 		try {
 			result = await db.books.findMany({
