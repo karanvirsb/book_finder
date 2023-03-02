@@ -85,6 +85,7 @@ export default function Books(): JSX.Element {
 						<p>Could not find any books.</p>
 					)}
 				</article>
+				{/* TODO add pagination */}
 			</section>
 		</>
 	);
