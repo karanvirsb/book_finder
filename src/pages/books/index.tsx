@@ -67,9 +67,9 @@ export default function Books(): JSX.Element {
 						<p>Loading...</p>
 					) : error != null ? (
 						<p>Oh no ... {error.message}</p>
-					) : data?.getBooksByTitleResolver != null &&
-					  data.getBooksByTitleResolver.length > 0 ? (
-						data.getBooksByTitleResolver.map((book) => {
+					) : data?.getBooksByTitleResolver?.books != null &&
+					  data.getBooksByTitleResolver.books.length > 0 ? (
+						data.getBooksByTitleResolver.books.map((book) => {
 							return (
 								<Book
 									asin={book?.asin ?? ""}
