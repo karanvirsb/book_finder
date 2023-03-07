@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Layout from "../../shared/ui/Layout";
 import Searchbar from "../../shared/ui/Searchbar";
 import {
@@ -15,10 +15,6 @@ import { useRouter } from "next/router";
 import SelectDropdown from "../../shared/ui/SelectDropdown";
 import Pagination from "../../shared/ui/Pagination";
 
-interface bookParams {
-	limit: number;
-	page: number;
-}
 export default function Books(): JSX.Element {
 	const router = useRouter();
 
