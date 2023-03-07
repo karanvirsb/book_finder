@@ -100,7 +100,7 @@ function PaginationWrapper({
 				className={`rounded-md px-2 py-1 hover:outline hover:outline-2 hover:outline-secondary ${
 					firstBtnDisabled ? "" : ""
 				}`}
-				disabled={currentPageNumber === 1}
+				disabled={disabledFirstBtn()}
 				onClick={() => {
 					routerCb(0);
 				}}
@@ -125,4 +125,13 @@ function PaginationWrapper({
 			</button>
 		</div>
 	);
+	function disabledFirstBtn(): boolean {
+		if (currentPageNumber === 1) {
+			setFirstBtnDisabled(true);
+			return true;
+		} else {
+			setFirstBtnDisabled(false);
+			return false;
+		}
+	}
 }
