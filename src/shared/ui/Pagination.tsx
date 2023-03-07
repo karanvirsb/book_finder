@@ -103,8 +103,10 @@ function PaginationWrapper({
 	return (
 		<div className="my-6 flex justify-center gap-4">
 			<button
-				className={`rounded-md px-2 py-1 hover:outline hover:outline-2 hover:outline-secondary ${
-					firstBtnDisabled ? "" : ""
+				className={`rounded-md px-2 py-1 ${
+					firstBtnDisabled
+						? "bg-gray-300 hover:outline-none"
+						: "hover:outline hover:outline-2 hover:outline-secondary"
 				}`}
 				disabled={firstBtnDisabled}
 				onClick={() => {
@@ -119,8 +121,10 @@ function PaginationWrapper({
 				<button disabled>{DOTS}</button>
 			) : null}
 			<button
-				className={`rounded-md px-2 py-1 hover:outline hover:outline-2 hover:outline-secondary ${
-					lastBtnDisabled ? "text-red-500" : ""
+				className={`rounded-md px-2 py-1 ${
+					lastBtnDisabled
+						? "bg-gray-300 hover:outline-none"
+						: "hover:outline hover:outline-2 hover:outline-secondary"
 				}`}
 				disabled={lastBtnDisabled}
 				onClick={() => {
