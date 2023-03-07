@@ -2,9 +2,10 @@ import React, { useMemo } from "react";
 
 interface props {
 	totalCount: number;
-	currPageNumber: number;
+	currPageNumber: React.MutableRefObject<number>;
+	routerCb: (page: number) => void;
 	limit: number;
-	setCurrPageNumber: React.Dispatch<React.SetStateAction<number>>;
+	// setCurrPageNumber: React.Dispatch<React.SetStateAction<number>>;
 }
 const DOTS = "...";
 // 1 ... 3 4 5 ... 7
@@ -13,9 +14,10 @@ const DOTS = "...";
 export default function Pagination({
 	totalCount,
 	currPageNumber,
+	routerCb,
 	limit,
-	setCurrPageNumber,
-}: props) {
+}: // setCurrPageNumber,
+props): JSX.Element {
 	const totalPages = useMemo(
 		() => Math.ceil(totalCount / limit),
 		[totalCount, limit]
@@ -25,36 +27,40 @@ export default function Pagination({
 	const visiblePages = totalPages >= 5 ? 5 : totalPages;
 
 	// if current page is less than 3 then show up to 5 pages
-	if (currPageNumber <= 3) {
+	if (currPageNumber.current <= 3) {
 		for (let i = 1; i <= visiblePages; i++) {
 			pages.push(i);
 		}
-	} else if (totalPages - 3 <= currPageNumber) {
+	} else if (totalPages - 3 <= currPageNumber.current) {
 		// go only up to the last page but show 5 total pages
 		for (let i = totalPages - 4; i <= totalPages; i++) {
 			pages.push(i);
 		}
 	} else {
 		// use the current page as the middle point
-		for (let i = currPageNumber - 2; i <= currPageNumber + 2; i++) {
+		for (
+			let i = currPageNumber.current - 2;
+			i <= currPageNumber.current + 2;
+			i++
+		) {
 			pages.push(i);
 		}
 	}
 
 	return (
 		<PaginationWrapper
-			currentPageNumber={currPageNumber}
-			setCurrPageNumber={setCurrPageNumber}
+			currentPageNumber={currPageNumber.current}
+			routerCb={routerCb}
 			totalPages={totalPages}
 		>
 			{pages.map((page) => {
-				if (currPageNumber === page) {
+				if (currPageNumber.current === page) {
 					return (
 						<button
 							key={page}
 							className="active"
 							onClick={() => {
-								setCurrPageNumber(page - 1);
+								routerCb(page - 1);
 							}}
 						>
 							{page}
@@ -65,7 +71,7 @@ export default function Pagination({
 						<button
 							key={page}
 							onClick={() => {
-								setCurrPageNumber(page - 1);
+								routerCb(page - 1);
 							}}
 						>
 							{page}
@@ -80,13 +86,13 @@ export default function Pagination({
 interface PaginationWrapperProps {
 	children: React.ReactNode;
 	currentPageNumber: number;
-	setCurrPageNumber: React.Dispatch<React.SetStateAction<number>>;
+	routerCb: (val: number) => void;
 	totalPages: number;
 }
 function PaginationWrapper({
 	children,
 	currentPageNumber,
-	setCurrPageNumber,
+	routerCb,
 	totalPages,
 }: PaginationWrapperProps): JSX.Element {
 	return (
@@ -94,7 +100,7 @@ function PaginationWrapper({
 			<button
 				disabled={currentPageNumber === 1}
 				onClick={() => {
-					setCurrPageNumber(0);
+					routerCb(0);
 				}}
 			>
 				First
@@ -105,7 +111,7 @@ function PaginationWrapper({
 			<button
 				disabled={currentPageNumber === totalPages}
 				onClick={() => {
-					setCurrPageNumber(totalPages - 1);
+					routerCb(totalPages - 1);
 				}}
 			>
 				Last
