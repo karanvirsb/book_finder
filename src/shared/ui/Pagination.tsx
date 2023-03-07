@@ -5,7 +5,6 @@ interface props {
 	currPageNumber: number;
 	routerCb: (page: number) => void;
 	limit: number;
-	// setCurrPageNumber: React.Dispatch<React.SetStateAction<number>>;
 }
 const DOTS = "...";
 // 1 ... 3 4 5 ... 7
@@ -16,8 +15,7 @@ export default function Pagination({
 	currPageNumber,
 	routerCb,
 	limit,
-}: // setCurrPageNumber,
-props): JSX.Element {
+}: props): JSX.Element {
 	const totalPages = useMemo(
 		() => Math.ceil(totalCount / limit),
 		[totalCount, limit]
@@ -115,10 +113,10 @@ function PaginationWrapper({
 			>
 				First
 			</button>
-			{currentPageNumber > 3 ? <button disabled>{DOTS}</button> : null}
+			{currentPageNumber > 3 ? <button disabled>...</button> : null}
 			{children}
 			{currentPageNumber + 3 < totalPages ? (
-				<button disabled>{DOTS}</button>
+				<button disabled>...</button>
 			) : null}
 			<button
 				className={`rounded-md px-2 py-1 ${
