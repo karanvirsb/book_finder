@@ -83,7 +83,7 @@ export default function Books(): JSX.Element {
 					)}
 				</article>
 				<Pagination
-					currPageNumber={pageQueryRef}
+					currPageNumber={pageQueryRef.current + 1}
 					limit={limitQueryRef.current}
 					totalCount={data?.getBooksByTitleResolver?.count ?? 0}
 					routerCb={updateBrowserPage}
