@@ -52,7 +52,8 @@ export default function Pagination({
 					return (
 						<button
 							key={page}
-							className="rounded-md px-2 py-1 hover:outline hover:outline-2 hover:outline-secondary"
+							className="rounded-md px-2 py-1 text-primary_accent"
+							disabled
 							onClick={() => {
 								routerCb(page - 1);
 							}}
