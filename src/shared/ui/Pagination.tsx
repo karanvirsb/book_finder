@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 
 interface props {
 	totalCount: number;
@@ -54,7 +54,7 @@ props): JSX.Element {
 					return (
 						<button
 							key={page}
-							className="active"
+							className="rounded-md px-2 py-1 hover:outline hover:outline-2 hover:outline-secondary"
 							onClick={() => {
 								routerCb(page - 1);
 							}}
@@ -66,6 +66,7 @@ props): JSX.Element {
 					return (
 						<button
 							key={page}
+							className="rounded-md px-2 py-1 hover:outline hover:outline-2 hover:outline-secondary"
 							onClick={() => {
 								routerCb(page - 1);
 							}}
@@ -91,10 +92,14 @@ function PaginationWrapper({
 	routerCb,
 	totalPages,
 }: PaginationWrapperProps): JSX.Element {
+	const [firstBtnDisabled, setFirstBtnDisabled] = useState(false);
+	const [lastBtnDisabled, setLastBtnDisabled] = useState(false);
 	return (
 		<div className="my-6 flex justify-center gap-4">
 			<button
-				className="border-none outline-1 outline-secondary"
+				className={`rounded-md px-2 py-1 hover:outline hover:outline-2 hover:outline-secondary ${
+					firstBtnDisabled ? "" : ""
+				}`}
 				disabled={currentPageNumber === 1}
 				onClick={() => {
 					routerCb(0);
@@ -102,10 +107,15 @@ function PaginationWrapper({
 			>
 				First
 			</button>
-			{currentPageNumber > 3 ? <button>{DOTS}</button> : null}
+			{currentPageNumber > 3 ? <button disabled>{DOTS}</button> : null}
 			{children}
-			{currentPageNumber + 3 < totalPages ? <button>{DOTS}</button> : null}
+			{currentPageNumber + 3 < totalPages ? (
+				<button disabled>{DOTS}</button>
+			) : null}
 			<button
+				className={`rounded-md px-2 py-1 hover:outline hover:outline-2 hover:outline-secondary ${
+					lastBtnDisabled ? "text-red-500" : ""
+				}`}
 				disabled={currentPageNumber === totalPages}
 				onClick={() => {
 					routerCb(totalPages - 1);
