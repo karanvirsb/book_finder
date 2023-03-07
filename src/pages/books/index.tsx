@@ -13,7 +13,7 @@ import Book from "./components/Book";
 // import { type SSRData, initUrqlClient, withUrqlClient } from "next-urql";
 import { useRouter } from "next/router";
 import SelectDropdown from "../../shared/ui/SelectDropdown";
-import Pagination from "../../shared/ui/Pagination/Pagination";
+import Pagination from "../../shared/ui/Pagination";
 
 export default function Books(): JSX.Element {
 	const router = useRouter();
