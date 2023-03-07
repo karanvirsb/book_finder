@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 interface props {
 	totalCount: number;
@@ -94,6 +94,12 @@ function PaginationWrapper({
 }: PaginationWrapperProps): JSX.Element {
 	const [firstBtnDisabled, setFirstBtnDisabled] = useState(false);
 	const [lastBtnDisabled, setLastBtnDisabled] = useState(false);
+
+	useEffect(() => {
+		toggleDisableFirstBtn();
+		toggleDisableLastBtn();
+	}, [currentPageNumber]);
+
 	return (
 		<div className="my-6 flex justify-center gap-4">
 			<button
@@ -125,23 +131,19 @@ function PaginationWrapper({
 			</button>
 		</div>
 	);
-	function toggleDisableFirstBtn(): boolean {
+	function toggleDisableFirstBtn(): void {
 		if (currentPageNumber === 1) {
 			setFirstBtnDisabled(true);
-			return true;
 		} else {
 			setFirstBtnDisabled(false);
-			return false;
 		}
 	}
 
-	function toggleDisableLastBtn(): boolean {
+	function toggleDisableLastBtn(): void {
 		if (currentPageNumber === totalPages) {
 			setLastBtnDisabled(true);
-			return true;
 		} else {
 			setLastBtnDisabled(false);
-			return false;
 		}
 	}
 }
