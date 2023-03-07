@@ -113,10 +113,10 @@ function PaginationWrapper({
 			>
 				First
 			</button>
-			{currentPageNumber > 3 ? <button disabled>...</button> : null}
+			{currentPageNumber > 3 ? <button disabled>{DOTS}</button> : null}
 			{children}
 			{currentPageNumber + 3 < totalPages ? (
-				<button disabled>...</button>
+				<button disabled>{DOTS}</button>
 			) : null}
 			<button
 				className={`rounded-md px-2 py-1 ${
