@@ -25,7 +25,6 @@ export default function Books(): JSX.Element {
 	limitQueryRef.current = Number.parseInt(router.query.limit as string) ?? 12;
 	pageQueryRef.current = Number.parseInt(router.query.page as string) ?? 0;
 
-	console.log(limitQueryRef, searchQueryRef, pageQueryRef);
 	const [{ data, fetching, error }] = useGetBooksByTitleQuery({
 		variables: {
 			limit: limitQueryRef.current,
