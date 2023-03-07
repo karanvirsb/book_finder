@@ -94,6 +94,7 @@ export default function Books(): JSX.Element {
 
 	function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
 		e.preventDefault();
+		pageQueryRef.current = 0; // reseting page
 		void router.push(
 			`/books?limit=${limitQueryRef.current}&page=${
 				pageQueryRef.current
@@ -103,6 +104,7 @@ export default function Books(): JSX.Element {
 
 	function handleSelectChange(e: React.ChangeEvent<HTMLSelectElement>): void {
 		limitQueryRef.current = Number.parseInt(e.target.value.trim());
+		pageQueryRef.current = 0; // reseting page
 		void router.push(
 			`/books?limit=${Number.parseInt(e.target.value.trim())}&page=${
 				pageQueryRef.current
