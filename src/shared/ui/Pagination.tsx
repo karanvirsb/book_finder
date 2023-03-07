@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 
 interface props {
 	totalCount: number;
-	currPageNumber: React.MutableRefObject<number>;
+	currPageNumber: number;
 	routerCb: (page: number) => void;
 	limit: number;
 	// setCurrPageNumber: React.Dispatch<React.SetStateAction<number>>;
@@ -27,34 +27,30 @@ props): JSX.Element {
 	const visiblePages = totalPages >= 5 ? 5 : totalPages;
 
 	// if current page is less than 3 then show up to 5 pages
-	if (currPageNumber.current <= 3) {
+	if (currPageNumber <= 3) {
 		for (let i = 1; i <= visiblePages; i++) {
 			pages.push(i);
 		}
-	} else if (totalPages - 3 <= currPageNumber.current) {
+	} else if (totalPages - 3 <= currPageNumber) {
 		// go only up to the last page but show 5 total pages
 		for (let i = totalPages - 4; i <= totalPages; i++) {
 			pages.push(i);
 		}
 	} else {
 		// use the current page as the middle point
-		for (
-			let i = currPageNumber.current - 2;
-			i <= currPageNumber.current + 2;
-			i++
-		) {
+		for (let i = currPageNumber - 2; i <= currPageNumber + 2; i++) {
 			pages.push(i);
 		}
 	}
 
 	return (
 		<PaginationWrapper
-			currentPageNumber={currPageNumber.current}
+			currentPageNumber={currPageNumber}
 			routerCb={routerCb}
 			totalPages={totalPages}
 		>
 			{pages.map((page) => {
-				if (currPageNumber.current === page) {
+				if (currPageNumber === page) {
 					return (
 						<button
 							key={page}
@@ -96,8 +92,9 @@ function PaginationWrapper({
 	totalPages,
 }: PaginationWrapperProps): JSX.Element {
 	return (
-		<div>
+		<div className="my-6 flex justify-center gap-4">
 			<button
+				className="border-none outline-1 outline-secondary"
 				disabled={currentPageNumber === 1}
 				onClick={() => {
 					routerCb(0);
