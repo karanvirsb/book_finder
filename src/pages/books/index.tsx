@@ -13,6 +13,7 @@ import Book from "./components/Book";
 // import { type SSRData, initUrqlClient, withUrqlClient } from "next-urql";
 import { useRouter } from "next/router";
 import SelectDropdown from "../../shared/ui/SelectDropdown";
+import Pagination from "../../shared/ui/Pagination";
 
 interface bookParams {
 	limit: number;
@@ -85,7 +86,12 @@ export default function Books(): JSX.Element {
 						<p>Could not find any books.</p>
 					)}
 				</article>
-				{/* TODO add pagination */}
+				<Pagination
+					currPageNumber={pageQueryRef}
+					limit={limitQueryRef.current}
+					totalCount={data?.getBooksByTitleResolver?.count ?? 0}
+					routerCb={updateBrowserPage}
+				></Pagination>
 			</section>
 		</>
 	);
@@ -103,6 +109,20 @@ export default function Books(): JSX.Element {
 		limitQueryRef.current = Number.parseInt(e.target.value.trim());
 		void router.push(
 			`/books?limit=${Number.parseInt(e.target.value.trim())}&page=${
+				pageQueryRef.current
+			}&searchQuery=${encodeURIComponent(searchQueryRef.current)}`
+		);
+	}
+
+	// TODO rename
+	/**
+	 *
+	 * @param newPage is a numeric value that will change the page query
+	 */
+	function updateBrowserPage(newPage: number): void {
+		pageQueryRef.current = newPage;
+		void router.push(
+			`/books?limit=${limitQueryRef.current}&page=${
 				pageQueryRef.current
 			}&searchQuery=${encodeURIComponent(searchQueryRef.current)}`
 		);
