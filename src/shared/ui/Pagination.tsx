@@ -100,7 +100,7 @@ function PaginationWrapper({
 				className={`rounded-md px-2 py-1 hover:outline hover:outline-2 hover:outline-secondary ${
 					firstBtnDisabled ? "" : ""
 				}`}
-				disabled={toggleDisableFirstBtn()}
+				disabled={firstBtnDisabled}
 				onClick={() => {
 					routerCb(0);
 				}}
@@ -116,7 +116,7 @@ function PaginationWrapper({
 				className={`rounded-md px-2 py-1 hover:outline hover:outline-2 hover:outline-secondary ${
 					lastBtnDisabled ? "text-red-500" : ""
 				}`}
-				disabled={toggleDisableLastBtn()}
+				disabled={lastBtnDisabled}
 				onClick={() => {
 					routerCb(totalPages - 1);
 				}}
