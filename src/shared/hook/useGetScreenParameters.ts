@@ -16,8 +16,8 @@ export default function useGetScreenParameters(): {
 		setWindowParams((prev) => {
 			return {
 				...prev,
-				height: window.screen.height,
-				width: window.screen.width,
+				height: window.innerHeight,
+				width: window.innerWidth,
 			};
 		});
 	}
