@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import useGetScreenParameters from "../hook/useGetScreenParameters";
 
 interface props {
 	totalCount: number;
@@ -16,13 +17,16 @@ export default function Pagination({
 	routerCb,
 	limit,
 }: props): JSX.Element {
+	const { width, height } = useGetScreenParameters();
+	console.log(width);
+	const totalVisiblePages = width > 500 ? 5 : 2;
 	const totalPages = useMemo(
 		() => Math.ceil(totalCount / limit),
 		[totalCount, limit]
 	);
 	const pages = [];
 	// checking total amount of pages visible
-	const visiblePages = totalPages >= 5 ? 5 : totalPages;
+	const visiblePages = totalPages >= 5 ? totalVisiblePages : totalPages;
 
 	// if current page is less than 3 then show up to 5 pages
 	if (currPageNumber <= 3) {
