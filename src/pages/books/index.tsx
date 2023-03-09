@@ -13,7 +13,7 @@ export default function Books(): JSX.Element {
 	const router = useRouter();
 	const bookParams = useBookParamsStore((state) => state.params);
 	const setBookParams = useBookParamsStore((state) => state.setParams);
-	const limitQueryRef = useRef<number>(12);
+	// const limitQueryRef = useRef<number>(12);
 	const pageQueryRef = useRef<number>(0);
 
 	const [{ data, fetching, error }] = useGetBooksByTitleQuery({
@@ -25,7 +25,7 @@ export default function Books(): JSX.Element {
 	});
 
 	useEffect(() => {
-		// limitQueryRef.current = Number.parseInt(router.query.limit as string) ?? 12;
+		// bookParams.limit = Number.parseInt(router.query.limit as string) ?? 12;
 		// pageQueryRef.current = Number.parseInt(router.query.page as string) ?? 0;
 		setBookParams({
 			searchQuery: router.query.searchQuery as string,
@@ -53,7 +53,7 @@ export default function Books(): JSX.Element {
 					<SelectDropdown
 						name="Per Page"
 						onchange={handleSelectChange}
-						defaultvalue={limitQueryRef.current}
+						defaultvalue={bookParams.limit}
 						options={[
 							{ name: "12", value: 12 },
 							{ name: "16", value: 16 },
@@ -87,7 +87,7 @@ export default function Books(): JSX.Element {
 				</article>
 				<Pagination
 					currPageNumber={pageQueryRef.current + 1}
-					limit={limitQueryRef.current}
+					limit={bookParams.limit}
 					totalCount={data?.getBooksByTitleResolver?.count ?? 0}
 					routerCb={updateBrowserPage}
 				></Pagination>
@@ -99,14 +99,14 @@ export default function Books(): JSX.Element {
 		e.preventDefault();
 		pageQueryRef.current = 0; // reseting page
 		void router.push(
-			`/books?limit=${limitQueryRef.current}&page=${
+			`/books?limit=${bookParams.limit}&page=${
 				pageQueryRef.current
 			}&searchQuery=${encodeURIComponent(bookParams.searchQuery)}`
 		);
 	}
 
 	function handleSelectChange(e: React.ChangeEvent<HTMLSelectElement>): void {
-		limitQueryRef.current = Number.parseInt(e.target.value.trim());
+		bookParams.limit = Number.parseInt(e.target.value.trim());
 		pageQueryRef.current = 0; // reseting page
 		void router.push(
 			`/books?limit=${Number.parseInt(e.target.value.trim())}&page=${
@@ -123,7 +123,7 @@ export default function Books(): JSX.Element {
 	function updateBrowserPage(newPage: number): void {
 		pageQueryRef.current = newPage;
 		void router.push(
-			`/books?limit=${limitQueryRef.current}&page=${
+			`/books?limit=${bookParams.limit}&page=${
 				pageQueryRef.current
 			}&searchQuery=${encodeURIComponent(bookParams.searchQuery)}`
 		);
