@@ -13,9 +13,11 @@ interface BookParamsState {
 	setParams: (params: Partial<paramsType>) => void;
 }
 
-export const useBookParamsStore = create<BookParamsState>()((set) => ({
+const useBookParamsStore = create<BookParamsState>()((set) => ({
 	params: { searchQuery: "", limit: 10, page: 0 },
 	setParams: (newParams) => {
 		set((state) => ({ params: { ...state.params, ...newParams } }));
 	},
 }));
+
+export default useBookParamsStore;
