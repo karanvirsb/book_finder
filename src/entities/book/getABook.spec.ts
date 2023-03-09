@@ -1,7 +1,12 @@
 import { afterAll, describe, expect, it, vi } from "vitest";
-import { makeGetABookDBA, makeGetABookUC } from "./getABook";
+import {
+	type getABookProps,
+	makeGetABookDBA,
+	makeGetABookUC,
+} from "./getABook";
 import prisma from "../../prisma";
 import { makeFakeBookWithAuthorAndPublisher } from "../../test/__fixtures__/books";
+import { type ZodError } from "zod";
 
 describe("Testing out getABookDBA", () => {
 	const getABookDBA = makeGetABookDBA({ db: prisma });
@@ -40,6 +45,16 @@ describe("Testing out getABookUC", () => {
 		const result = await getABookUC({ id: fakeBook.asin });
 		if (result.success) {
 			expect(result.data?.asin).toBe(fakeBook.asin);
+		}
+	});
+
+	it("ERROR: id error", async () => {
+		const result = await getABookUC({ id: "" });
+		expect(result.success).toBeFalsy();
+		if (!result.success) {
+			const error = result.error as ZodError<getABookProps>;
+			console.log(error);
+			expect(error.format().id?._errors[0]).toBe("");
 		}
 	});
 });
