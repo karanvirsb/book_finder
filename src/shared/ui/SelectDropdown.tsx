@@ -3,14 +3,14 @@ import React, { type ChangeEventHandler } from "react";
 interface dropdownProps {
 	name: string;
 	onchange: ChangeEventHandler;
-	defaultvalue: number;
+	value: any;
 	options: Array<{ name: string; value: any }>;
 }
 
 export default function SelectDropdown({
 	name,
 	onchange,
-	defaultvalue,
+	value,
 	options,
 }: dropdownProps): JSX.Element {
 	return (
@@ -20,7 +20,7 @@ export default function SelectDropdown({
 				className="relative ml-4 inline-block rounded-md bg-white px-3 py-2 text-left text-sm font-semibold text-secondary hover:bg-gray-50 hover:text-primary_accent"
 				id={`dropdown-${name}`}
 				onChange={onchange}
-				defaultValue={`${defaultvalue}`}
+				value={value}
 			>
 				{options.map((obj) => {
 					return (
