@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface BookProps {
 	asin: string;
@@ -17,7 +18,8 @@ export default function Book({
 	description,
 }: BookProps): JSX.Element {
 	return (
-		<div
+		<Link
+			href={`./books/${asin}`}
 			tabIndex={0}
 			className="flex max-h-max w-80 flex-col justify-center rounded-2xl bg-white py-2 shadow-xl shadow-gray-400/20"
 		>
@@ -42,6 +44,6 @@ export default function Book({
 					{description}
 				</p>
 			</div>
-		</div>
+		</Link>
 	);
 }
