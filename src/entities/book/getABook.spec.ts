@@ -1,6 +1,7 @@
 import { afterAll, describe, expect, it, vi } from "vitest";
-import { makeGetABookDBA } from "./getABook";
+import { makeGetABookDBA, makeGetABookUC } from "./getABook";
 import prisma from "../../prisma";
+import { makeFakeBookWithAuthorAndPublisher } from "../../test/__fixtures__/books";
 
 describe("Testing out getABookDBA", () => {
 	const getABookDBA = makeGetABookDBA({ db: prisma });
@@ -20,6 +21,25 @@ describe("Testing out getABookDBA", () => {
 			if (typeof error === "string") {
 				expect(error).toBe("Could not find the Book.");
 			}
+		}
+	});
+});
+
+describe("Testing out getABookUC", () => {
+	const fakeBook = makeFakeBookWithAuthorAndPublisher();
+	const getABookDBA = makeGetABookDBA({ db: prisma });
+	const getABookDBAMocked = vi
+		.fn(getABookDBA)
+		.mockResolvedValueOnce({ success: true, data: fakeBook });
+	const getABookUC = makeGetABookUC({ getABookDBA: getABookDBAMocked });
+	afterAll(() => {
+		vi.resetAllMocks();
+	});
+
+	it("SUCCESS: Get a book", async () => {
+		const result = await getABookUC({ id: fakeBook.asin });
+		if (result.success) {
+			expect(result.data?.asin).toBe(fakeBook.asin);
 		}
 	});
 });
