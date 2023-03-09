@@ -7,7 +7,7 @@ import Book from "./components/Book";
 import { useRouter } from "next/router";
 import SelectDropdown from "../../shared/ui/SelectDropdown";
 import Pagination from "../../shared/ui/Pagination";
-import { useBookParamsStore } from "../../shared/zustand/bookParams";
+import useBookParamsStore from "../../shared/zustand/bookParams";
 
 export default function Books(): JSX.Element {
 	const router = useRouter();
@@ -41,8 +41,6 @@ export default function Books(): JSX.Element {
 					<section className="my-10 w-full py-10">
 						<Searchbar
 							// searchQuery={searchQueryRef}
-							searchQuery={bookParams.searchQuery}
-							setSearchQuery={setBookParams}
 							submitCb={handleSubmit}
 						></Searchbar>
 					</section>
