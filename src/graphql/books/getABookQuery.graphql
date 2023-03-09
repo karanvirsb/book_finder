@@ -1,0 +1,24 @@
+query getABook($getABookId: String) {
+	getABook(id: $getABookId) {
+		asin
+		ISBN10
+		author {
+			name
+		}
+		currency
+		description
+		final_price
+		format
+		image_url
+		item_weight
+		product_dimensions
+		rating
+		reviews_count
+		publisher_id {
+			name
+		}
+		title
+		url
+		categories
+	}
+}
