@@ -4,11 +4,19 @@ import {
 	type Publisher,
 	type PrismaClient,
 } from "@prisma/client";
+import { z } from "zod";
+
+const getABookSchema = z.object({ id: z.string().min(10) });
+type getABookProps = z.infer<typeof getABookSchema>;
+
+export function makeGetABookUC() {
+	return async function getABookUC({ id }: getABookProps) {};
+}
 
 interface getABookDBADeps {
 	db: PrismaClient;
 }
-export default function makeGetABookDBA({ db }: getABookDBADeps) {
+export function makeGetABookDBA({ db }: getABookDBADeps) {
 	return async function getABookDBA({
 		id,
 	}: {
