@@ -12,8 +12,6 @@ export default function Books(): JSX.Element {
 	const router = useRouter();
 	const bookParams = useBookParamsStore((state) => state.params);
 	const setBookParams = useBookParamsStore((state) => state.setParams);
-	// const limitQueryRef = useRef<number>(12);
-	// const pageQueryRef = useRef<number>(0);
 
 	const [{ data, fetching, error }] = useGetBooksByTitleQuery({
 		variables: {
@@ -28,8 +26,6 @@ export default function Books(): JSX.Element {
 	});
 
 	useEffect(() => {
-		// bookParams.limit = Number.parseInt(router.query.limit as string) ?? 12;
-		// bookParams.page = Number.parseInt(router.query.page as string) ?? 0;
 		setBookParams({
 			searchQuery: router.query.searchQuery as string,
 			limit: Number.isNaN(router.query.limit)
@@ -46,10 +42,7 @@ export default function Books(): JSX.Element {
 			<main className="max-h-max bg-books-background">
 				<Layout>
 					<section className="my-10 w-full py-10">
-						<Searchbar
-							// searchQuery={searchQueryRef}
-							submitCb={handleSubmit}
-						></Searchbar>
+						<Searchbar submitCb={handleSubmit}></Searchbar>
 					</section>
 				</Layout>
 			</main>
