@@ -28,9 +28,14 @@ export interface GetBooksByTitlePayload {
 
 export interface RootQueryType {
 	__typename?: "RootQueryType";
+	getABook?: Maybe<Book>;
 	getAllBooksByPage?: Maybe<Array<Maybe<Book>>>;
 	getBooksByTitleResolver?: Maybe<GetBooksByTitlePayload>;
 	getHelloWorld?: Maybe<Scalars["String"]>;
+}
+
+export interface RootQueryTypeGetABookArgs {
+	id: InputMaybe<Scalars["String"]>;
 }
 
 export interface RootQueryTypeGetAllBooksByPageArgs {
@@ -78,6 +83,33 @@ export interface Publisher {
 	id?: Maybe<Scalars["Int"]>;
 	name?: Maybe<Scalars["String"]>;
 	phone?: Maybe<Scalars["String"]>;
+}
+
+export type GetABookQueryVariables = Exact<{
+	getABookId: InputMaybe<Scalars["String"]>;
+}>;
+
+export interface GetABookQuery {
+	__typename?: "RootQueryType";
+	getABook?: {
+		__typename?: "book";
+		asin?: string | null;
+		ISBN10?: string | null;
+		currency?: string | null;
+		description?: string | null;
+		final_price?: number | null;
+		format?: any | null;
+		image_url?: string | null;
+		item_weight?: string | null;
+		product_dimensions?: string | null;
+		rating?: string | null;
+		reviews_count?: number | null;
+		title?: string | null;
+		url?: string | null;
+		categories?: Array<string | null> | null;
+		author?: { __typename?: "author"; name?: string | null } | null;
+		publisher_id?: { __typename?: "publisher"; name?: string | null } | null;
+	} | null;
 }
 
 export type GetAllBooksQueryVariables = Exact<{
@@ -129,6 +161,41 @@ export interface GetBooksByTitleQuery {
 	} | null;
 }
 
+export const GetABookDocument = gql`
+	query getABook($getABookId: String) {
+		getABook(id: $getABookId) {
+			asin
+			ISBN10
+			author {
+				name
+			}
+			currency
+			description
+			final_price
+			format
+			image_url
+			item_weight
+			product_dimensions
+			rating
+			reviews_count
+			publisher_id {
+				name
+			}
+			title
+			url
+			categories
+		}
+	}
+`;
+
+export function useGetABookQuery(
+	options?: Omit<Urql.UseQueryArgs<GetABookQueryVariables>, "query">
+) {
+	return Urql.useQuery<GetABookQuery, GetABookQueryVariables>({
+		query: GetABookDocument,
+		...options,
+	});
+}
 export const GetAllBooksDocument = gql`
 	query getAllBooks($limit: Int, $page: Int) {
 		getAllBooksByPage(limit: $limit, page: $page) {
