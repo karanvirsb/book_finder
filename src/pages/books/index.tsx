@@ -1,44 +1,50 @@
-import React, { useRef } from "react";
+"use client";
+import React, { useEffect, useRef, useState } from "react";
 import Layout from "../../shared/ui/Layout";
 import Searchbar from "../../shared/ui/Searchbar";
-import {
-	// type GetBooksByTitleQuery,
-	useGetBooksByTitleQuery,
-	// GetBooksByTitleDocument,
-	// type GetBooksByTitleQueryVariables,
-} from "../../generated/graphql";
+import { useGetBooksByTitleQuery } from "../../generated/graphql";
 import Book from "./components/Book";
-// import { type GetServerSidePropsContext } from "next";
-// import { cacheExchange, dedupExchange, fetchExchange, ssrExchange } from "urql";
-// import { type SSRData, initUrqlClient, withUrqlClient } from "next-urql";
 import { useRouter } from "next/router";
 import SelectDropdown from "../../shared/ui/SelectDropdown";
 import Pagination from "../../shared/ui/Pagination";
+import { useBookParamsStore } from "../../shared/zustand/bookParams";
 
 export default function Books(): JSX.Element {
 	const router = useRouter();
-
+	const bookParams = useBookParamsStore((state) => state.params);
+	const setBookParams = useBookParamsStore((state) => state.setParams);
+	const [paused, setPaused] = useState(false);
 	const searchQueryRef = useRef<string>("");
 	const limitQueryRef = useRef<number>(12);
 	const pageQueryRef = useRef<number>(0);
-	searchQueryRef.current = (router.query.searchQuery as string) ?? "";
-	limitQueryRef.current = Number.parseInt(router.query.limit as string) ?? 12;
-	pageQueryRef.current = Number.parseInt(router.query.page as string) ?? 0;
 
 	const [{ data, fetching, error }] = useGetBooksByTitleQuery({
 		variables: {
-			limit: limitQueryRef.current,
-			page: pageQueryRef.current,
-			searchQuery: searchQueryRef.current,
+			limit: Number.parseInt(router.query.limit as string) ?? 12,
+			page: Number.parseInt(router.query.page as string) ?? 0,
+			searchQuery: router.query.searchQuery as string,
 		},
 	});
+
+	useEffect(() => {
+		// limitQueryRef.current = Number.parseInt(router.query.limit as string) ?? 12;
+		// pageQueryRef.current = Number.parseInt(router.query.page as string) ?? 0;
+		setBookParams({
+			searchQuery: router.query.searchQuery as string,
+			limit: Number.parseInt(router.query.limit as string) ?? 12,
+			page: Number.parseInt(router.query.page as string) ?? 0,
+		});
+	}, [router]);
+
 	return (
 		<>
 			<main className="max-h-max bg-books-background">
 				<Layout>
 					<section className="my-10 w-full py-10">
 						<Searchbar
-							searchQuery={searchQueryRef}
+							// searchQuery={searchQueryRef}
+							searchQuery={bookParams.searchQuery}
+							setSearchQuery={setBookParams}
 							submitCb={handleSubmit}
 						></Searchbar>
 					</section>
@@ -97,7 +103,7 @@ export default function Books(): JSX.Element {
 		void router.push(
 			`/books?limit=${limitQueryRef.current}&page=${
 				pageQueryRef.current
-			}&searchQuery=${encodeURIComponent(searchQueryRef.current)}`
+			}&searchQuery=${encodeURIComponent(bookParams.searchQuery)}`
 		);
 	}
 
