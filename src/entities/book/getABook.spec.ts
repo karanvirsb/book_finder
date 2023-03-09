@@ -6,7 +6,7 @@ import {
 } from "./getABook";
 import prisma from "../../prisma";
 import { makeFakeBookWithAuthorAndPublisher } from "../../test/__fixtures__/books";
-import { type ZodError } from "zod";
+import { ZodError } from "zod";
 
 describe("Testing out getABookDBA", () => {
 	const getABookDBA = makeGetABookDBA({ db: prisma });
@@ -51,10 +51,12 @@ describe("Testing out getABookUC", () => {
 	it("ERROR: id error", async () => {
 		const result = await getABookUC({ id: "" });
 		expect(result.success).toBeFalsy();
-		if (!result.success) {
+		if (!result.success && result.error instanceof ZodError) {
 			const error = result.error as ZodError<getABookProps>;
 			console.log(error);
-			expect(error.format().id?._errors[0]).toBe("");
+			expect(error.format().id?._errors[0]).toBe(
+				"String must contain at least 10 character(s)"
+			);
 		}
 	});
 });
