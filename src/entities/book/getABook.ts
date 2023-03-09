@@ -10,14 +10,14 @@ type getABookReturn = (Books & { author: Author; publisher: Publisher }) | null;
 type GetABookDBA = ({ id }: { id: string }) => Promise<Result<getABookReturn>>;
 
 const getABookSchema = z.object({ id: z.string().min(10) });
-type getABookProps = z.infer<typeof getABookSchema>;
+export type getABookProps = z.infer<typeof getABookSchema>;
 
 export function makeGetABookUC({ getABookDBA }: { getABookDBA: GetABookDBA }) {
 	return async function getABookUC({
 		id,
 	}: getABookProps): Promise<Result<getABookReturn>> {
 		try {
-			await getABookSchema.safeParseAsync({ id });
+			getABookSchema.safeParse({ id });
 			return await getABookDBA({ id });
 		} catch (error) {
 			return {
