@@ -1,7 +1,17 @@
 import { useEffect, useState } from "react";
 
 export default function useGetScreenParameters(): readonly [number, number] {
-	const [windowParams, setWindowParams] = useState({ width: 0, height: 0 });
+	const [windowParams, setWindowParams] = useState({
+		width: 0,
+		height: 0,
+	});
+
+	useEffect(() => {
+		if (window !== undefined) {
+			setWindowParams({ width: window.innerWidth, height: window.innerHeight });
+		}
+	}, []);
+
 	useEffect(() => {
 		window.addEventListener("resize", handleChange);
 		return () => {
