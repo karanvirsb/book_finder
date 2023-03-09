@@ -1,13 +1,17 @@
 import React from "react";
+import { type paramsType } from "../zustand/bookParams";
 
 interface ISearchbar {
-	searchQuery: React.MutableRefObject<string>;
+	// searchQuery: React.MutableRefObject<string>;
+	searchQuery: string;
+	setSearchQuery: (params: Partial<paramsType>) => void;
 	submitCb: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 export default function Searchbar({
 	searchQuery,
 	submitCb,
+	setSearchQuery,
 }: ISearchbar): JSX.Element {
 	return (
 		<form
@@ -19,8 +23,10 @@ export default function Searchbar({
 			<input
 				className="min-h-[35px] flex-grow rounded-full border-none px-2 outline outline-1 outline-secondary"
 				placeholder="Search for Books"
+				value={searchQuery}
 				onChange={(e) => {
-					searchQuery.current = e.target.value;
+					// searchQuery.current = e.target.value;
+					setSearchQuery({ searchQuery: e.target.value });
 				}}
 			/>
 			<button
