@@ -17,7 +17,7 @@ export default function Pagination({
 	routerCb,
 	limit,
 }: props): JSX.Element {
-	const { width, height } = useGetScreenParameters();
+	const [width] = useGetScreenParameters();
 	console.log(width);
 	const totalVisiblePages = width > 500 ? 5 : 2;
 	const totalPages = useMemo(
