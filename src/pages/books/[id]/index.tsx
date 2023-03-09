@@ -1,15 +1,22 @@
 import { type GetServerSidePropsContext } from "next";
-import { withUrqlClient, initUrqlClient, type SSRData } from "next-urql";
 import React from "react";
-import { cacheExchange, dedupExchange, fetchExchange, ssrExchange } from "urql";
+import {
+	cacheExchange,
+	dedupExchange,
+	fetchExchange,
+	ssrExchange,
+	useQuery,
+} from "urql";
 import {
 	GetABookDocument,
 	type GetABookQuery,
 	type GetABookQueryVariables,
 } from "../../../generated/graphql";
+import { initUrqlClient, withUrqlClient, type SSRData } from "next-urql";
 
 function BookDetails(): JSX.Element {
-	return <div>BookDetails</div>;
+	const [book] = useQuery({ query: GetABookDocument });
+	return <pre>{JSON.stringify(book, null, 2)}</pre>;
 }
 
 export async function getServerSideProps(
@@ -19,6 +26,8 @@ export async function getServerSideProps(
 		urqlState: SSRData;
 	};
 }> {
+	const { id } = ctx.params as any;
+	console.log("🚀 ~ file: index.tsx:26 ~ ctx:", ctx.params, id);
 	const ssrCache = ssrExchange({ isClient: false });
 	const client = initUrqlClient(
 		{
@@ -30,7 +39,7 @@ export async function getServerSideProps(
 
 	await client
 		?.query<GetABookQuery, GetABookQueryVariables>(GetABookDocument, {
-			getABookId: (ctx?.params?.id as string) ?? "",
+			getABookId: id,
 		})
 		.toPromise();
 
@@ -42,5 +51,5 @@ export async function getServerSideProps(
 }
 
 export default withUrqlClient((ssr) => ({
-	url: "your-url",
+	url: "http://localhost:3000/api/graphql",
 }))(BookDetails);
