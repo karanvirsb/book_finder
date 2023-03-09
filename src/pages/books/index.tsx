@@ -1,5 +1,4 @@
-"use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import Layout from "../../shared/ui/Layout";
 import Searchbar from "../../shared/ui/Searchbar";
 import { useGetBooksByTitleQuery } from "../../generated/graphql";
@@ -18,8 +17,12 @@ export default function Books(): JSX.Element {
 
 	const [{ data, fetching, error }] = useGetBooksByTitleQuery({
 		variables: {
-			limit: Number.parseInt(router.query.limit as string) ?? 12,
-			page: Number.parseInt(router.query.page as string) ?? 0,
+			limit: Number.isNaN(router.query.limit)
+				? 12
+				: Number.parseInt(router.query.limit as string),
+			page: Number.isNaN(router.query.page)
+				? 0
+				: Number.parseInt(router.query.page as string),
 			searchQuery: router.query.searchQuery as string,
 		},
 	});
@@ -29,8 +32,12 @@ export default function Books(): JSX.Element {
 		// bookParams.page = Number.parseInt(router.query.page as string) ?? 0;
 		setBookParams({
 			searchQuery: router.query.searchQuery as string,
-			limit: Number.parseInt(router.query.limit as string) ?? 12,
-			page: Number.parseInt(router.query.page as string) ?? 0,
+			limit: Number.isNaN(router.query.limit)
+				? 12
+				: Number.parseInt(router.query.limit as string),
+			page: Number.isNaN(router.query.page)
+				? 0
+				: Number.parseInt(router.query.page as string),
 		});
 	}, [router]);
 
@@ -51,7 +58,7 @@ export default function Books(): JSX.Element {
 					<SelectDropdown
 						name="Per Page"
 						onchange={handleSelectChange}
-						value={bookParams.limit}
+						value={`${bookParams.limit}`}
 						options={[
 							{ name: "12", value: 12 },
 							{ name: "16", value: 16 },
