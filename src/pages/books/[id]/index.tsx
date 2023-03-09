@@ -2,6 +2,11 @@ import { type GetServerSidePropsContext } from "next";
 import { withUrqlClient, initUrqlClient, type SSRData } from "next-urql";
 import React from "react";
 import { cacheExchange, dedupExchange, fetchExchange, ssrExchange } from "urql";
+import {
+	GetABookDocument,
+	type GetABookQuery,
+	type GetABookQueryVariables,
+} from "../../../generated/graphql";
 
 function BookDetails(): JSX.Element {
 	return <div>BookDetails</div>;
@@ -23,7 +28,11 @@ export async function getServerSideProps(
 		false
 	);
 
-	await client?.query(TODOS_QUERY).toPromise();
+	await client
+		?.query<GetABookQuery, GetABookQueryVariables>(GetABookDocument, {
+			getABookId: (ctx?.params?.id as string) ?? "",
+		})
+		.toPromise();
 
 	return {
 		props: {
