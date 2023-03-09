@@ -18,7 +18,6 @@ export default function Pagination({
 	limit,
 }: props): JSX.Element {
 	const [width] = useGetScreenParameters();
-	console.log(width);
 	const totalVisiblePages = width > 500 ? 5 : 2;
 	const totalPages = useMemo(
 		() => Math.ceil(totalCount / limit),
