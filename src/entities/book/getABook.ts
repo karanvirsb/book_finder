@@ -32,7 +32,11 @@ interface getABookDBADeps {
 	db: PrismaClient;
 }
 export function makeGetABookDBA({ db }: getABookDBADeps) {
-	return async function getABookDBA<GetABookDBA>({ id }: { id: string }) {
+	return async function getABookDBA({
+		id,
+	}: {
+		id: string;
+	}): Promise<Result<getABookReturn>> {
 		try {
 			const result = await db.books.findFirst({
 				where: { asin: id },
