@@ -6,24 +6,33 @@ import {
 } from "@prisma/client";
 import { z } from "zod";
 
+type getABookReturn = (Books & { author: Author; publisher: Publisher }) | null;
+type GetABookDBA = ({ id }: { id: string }) => Promise<Result<getABookReturn>>;
+
 const getABookSchema = z.object({ id: z.string().min(10) });
 type getABookProps = z.infer<typeof getABookSchema>;
 
-export function makeGetABookUC() {
-	return async function getABookUC({ id }: getABookProps) {};
+export function makeGetABookUC({ getABookDBA }: { getABookDBA: GetABookDBA }) {
+	return async function getABookUC({
+		id,
+	}: getABookProps): Promise<Result<getABookReturn>> {
+		try {
+			await getABookSchema.safeParseAsync({ id });
+			return await getABookDBA({ id });
+		} catch (error) {
+			return {
+				success: false,
+				error,
+			};
+		}
+	};
 }
 
 interface getABookDBADeps {
 	db: PrismaClient;
 }
 export function makeGetABookDBA({ db }: getABookDBADeps) {
-	return async function getABookDBA({
-		id,
-	}: {
-		id: string;
-	}): Promise<
-		Result<(Books & { author: Author; publisher: Publisher }) | null>
-	> {
+	return async function getABookDBA<GetABookDBA>({ id }: { id: string }) {
 		try {
 			const result = await db.books.findFirst({
 				where: { asin: id },
