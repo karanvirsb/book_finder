@@ -1,5 +1,5 @@
 import { afterAll, describe, expect, it, vi } from "vitest";
-import makeGetABookDBA from "./getABook";
+import { makeGetABookDBA } from "./getABook";
 import prisma from "../../prisma";
 
 describe("Testing out getABookDBA", () => {
