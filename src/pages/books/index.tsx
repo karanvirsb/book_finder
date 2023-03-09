@@ -14,7 +14,7 @@ export default function Books(): JSX.Element {
 	const bookParams = useBookParamsStore((state) => state.params);
 	const setBookParams = useBookParamsStore((state) => state.setParams);
 	// const limitQueryRef = useRef<number>(12);
-	const pageQueryRef = useRef<number>(0);
+	// const pageQueryRef = useRef<number>(0);
 
 	const [{ data, fetching, error }] = useGetBooksByTitleQuery({
 		variables: {
@@ -26,7 +26,7 @@ export default function Books(): JSX.Element {
 
 	useEffect(() => {
 		// bookParams.limit = Number.parseInt(router.query.limit as string) ?? 12;
-		// pageQueryRef.current = Number.parseInt(router.query.page as string) ?? 0;
+		// bookParams.page = Number.parseInt(router.query.page as string) ?? 0;
 		setBookParams({
 			searchQuery: router.query.searchQuery as string,
 			limit: Number.parseInt(router.query.limit as string) ?? 12,
@@ -86,7 +86,7 @@ export default function Books(): JSX.Element {
 					)}
 				</article>
 				<Pagination
-					currPageNumber={pageQueryRef.current + 1}
+					currPageNumber={bookParams.page + 1}
 					limit={bookParams.limit}
 					totalCount={data?.getBooksByTitleResolver?.count ?? 0}
 					routerCb={updateBrowserPage}
@@ -97,20 +97,20 @@ export default function Books(): JSX.Element {
 
 	function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
 		e.preventDefault();
-		pageQueryRef.current = 0; // reseting page
+		bookParams.page = 0; // reseting page
 		void router.push(
 			`/books?limit=${bookParams.limit}&page=${
-				pageQueryRef.current
+				bookParams.page
 			}&searchQuery=${encodeURIComponent(bookParams.searchQuery)}`
 		);
 	}
 
 	function handleSelectChange(e: React.ChangeEvent<HTMLSelectElement>): void {
 		bookParams.limit = Number.parseInt(e.target.value.trim());
-		pageQueryRef.current = 0; // reseting page
+		bookParams.page = 0; // reseting page
 		void router.push(
 			`/books?limit=${Number.parseInt(e.target.value.trim())}&page=${
-				pageQueryRef.current
+				bookParams.page
 			}&searchQuery=${encodeURIComponent(bookParams.searchQuery)}`
 		);
 	}
@@ -121,10 +121,10 @@ export default function Books(): JSX.Element {
 	 * @param newPage is a numeric value that will change the page query
 	 */
 	function updateBrowserPage(newPage: number): void {
-		pageQueryRef.current = newPage;
+		bookParams.page = newPage;
 		void router.push(
 			`/books?limit=${bookParams.limit}&page=${
-				pageQueryRef.current
+				bookParams.page
 			}&searchQuery=${encodeURIComponent(bookParams.searchQuery)}`
 		);
 	}
