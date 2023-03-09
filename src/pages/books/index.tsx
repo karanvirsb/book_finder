@@ -13,8 +13,6 @@ export default function Books(): JSX.Element {
 	const router = useRouter();
 	const bookParams = useBookParamsStore((state) => state.params);
 	const setBookParams = useBookParamsStore((state) => state.setParams);
-	const [paused, setPaused] = useState(false);
-	const searchQueryRef = useRef<string>("");
 	const limitQueryRef = useRef<number>(12);
 	const pageQueryRef = useRef<number>(0);
 
@@ -113,7 +111,7 @@ export default function Books(): JSX.Element {
 		void router.push(
 			`/books?limit=${Number.parseInt(e.target.value.trim())}&page=${
 				pageQueryRef.current
-			}&searchQuery=${encodeURIComponent(searchQueryRef.current)}`
+			}&searchQuery=${encodeURIComponent(bookParams.searchQuery)}`
 		);
 	}
 
@@ -127,7 +125,7 @@ export default function Books(): JSX.Element {
 		void router.push(
 			`/books?limit=${limitQueryRef.current}&page=${
 				pageQueryRef.current
-			}&searchQuery=${encodeURIComponent(searchQueryRef.current)}`
+			}&searchQuery=${encodeURIComponent(bookParams.searchQuery)}`
 		);
 	}
 }
