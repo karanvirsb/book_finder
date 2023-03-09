@@ -17,7 +17,10 @@ export function makeGetABookUC({ getABookDBA }: { getABookDBA: GetABookDBA }) {
 		id,
 	}: getABookProps): Promise<Result<getABookReturn>> {
 		try {
-			getABookSchema.safeParse({ id });
+			const result = getABookSchema.safeParse({ id });
+			if (!result.success) {
+				return result;
+			}
 			return await getABookDBA({ id });
 		} catch (error) {
 			return {
