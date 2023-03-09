@@ -51,7 +51,7 @@ export default function Books(): JSX.Element {
 					<SelectDropdown
 						name="Per Page"
 						onchange={handleSelectChange}
-						defaultvalue={bookParams.limit}
+						value={bookParams.limit}
 						options={[
 							{ name: "12", value: 12 },
 							{ name: "16", value: 16 },
