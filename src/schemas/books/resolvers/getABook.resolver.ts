@@ -9,7 +9,7 @@ interface args {
 
 const getABook: resolver = {
 	type: BookType,
-	args: { id: GraphQLString },
+	args: { id: { type: GraphQLString } },
 	async resolve(_, { id }: args) {
 		return await prisma.books.findFirst({
 			where: { asin: id },
