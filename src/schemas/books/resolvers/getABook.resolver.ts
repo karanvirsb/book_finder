@@ -1,7 +1,6 @@
 import { GraphQLString } from "graphql";
 import { type resolver } from "../../types/resolvers";
 import BookType from "../typedef/book-typedef";
-import prisma from "../../../prisma";
 import { getABookUC } from "../../../entities/book";
 
 interface args {
