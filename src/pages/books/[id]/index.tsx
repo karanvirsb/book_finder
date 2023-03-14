@@ -13,9 +13,16 @@ import {
 	type GetABookQueryVariables,
 } from "../../../generated/graphql";
 import { initUrqlClient, withUrqlClient, type SSRData } from "next-urql";
+import { useRouter } from "next/router";
 
 function BookDetails(): JSX.Element {
-	const [book] = useQuery({ query: GetABookDocument });
+	const router = useRouter();
+	const bookId = router.query.id as string;
+	console.log(bookId);
+	const [book] = useQuery<GetABookQuery, GetABookQueryVariables>({
+		query: GetABookDocument,
+		variables: { getABookId: bookId },
+	});
 	return <pre>{JSON.stringify(book, null, 2)}</pre>;
 }
 
@@ -27,7 +34,7 @@ export async function getServerSideProps(
 	};
 }> {
 	const { id } = ctx.params as any;
-	console.log("🚀 ~ file: index.tsx:26 ~ ctx:", ctx.params, id);
+
 	const ssrCache = ssrExchange({ isClient: false });
 	const client = initUrqlClient(
 		{
