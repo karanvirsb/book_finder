@@ -1,7 +1,7 @@
 import { GraphQLString } from "graphql";
 import { type resolver } from "../../types/resolvers";
-import BookType from "../typedef/book-typedef";
 import { getABookUC } from "../../../entities/book";
+import BookType from "../typedef/book-typedef";
 
 interface args {
 	id: string;
@@ -11,7 +11,12 @@ const getABook: resolver = {
 	type: BookType,
 	args: { id: { type: GraphQLString } },
 	async resolve(_, { id }: args) {
-		return await getABookUC({ id });
+		const res = await getABookUC({ id: id.trim() });
+		if (res.success) {
+			return res.data;
+		} else {
+			return res.error;
+		}
 	},
 };
 
