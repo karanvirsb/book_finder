@@ -18,7 +18,6 @@ import { useRouter } from "next/router";
 function BookDetails(): JSX.Element {
 	const router = useRouter();
 	const bookId = router.query.id as string;
-	console.log(bookId);
 	const [book] = useQuery<GetABookQuery, GetABookQueryVariables>({
 		query: GetABookDocument,
 		variables: { getABookId: bookId },
