@@ -61,6 +61,7 @@
 		"graphql-request": "^5.1.0",
 		"graphql-tag": "^2.12.6",
 		"jsdom": "^21.1.0",
+		"mirrorful": "^4.0.1",
 		"postcss": "^8.4.21",
 		"prettier": "^2.8.4",
 		"prettier-plugin-tailwindcss": "^0.2.3",
