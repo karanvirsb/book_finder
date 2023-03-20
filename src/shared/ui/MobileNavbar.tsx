@@ -20,7 +20,7 @@ export default function MobileNavbar(): JSX.Element {
 				}`}
 			>
 				<p className="text-xl font-semibold">Book Finder</p>
-				<nav className="text-secondary flex w-full flex-col items-center gap-6 pt-4">
+				<nav className="flex w-full flex-col items-center gap-6 pt-4 text-secondary-500">
 					{/* TODO create page */}
 					<Link
 						href="recently-viewed"
@@ -40,7 +40,7 @@ export default function MobileNavbar(): JSX.Element {
 					{/* TODO create login */}
 					<Link
 						href="login"
-						className="bg-secondary hover:text-secondary hover:outline-secondary w-full border-none py-3 text-center text-primary-500 hover:bg-transparent hover:font-bold hover:outline sm:py-1 sm:px-4"
+						className="bg-secondary hover:outline-secondary w-full border-none py-3 text-center text-primary-500 hover:bg-transparent hover:font-bold hover:text-secondary-500 hover:outline sm:py-1 sm:px-4"
 					>
 						Login
 					</Link>

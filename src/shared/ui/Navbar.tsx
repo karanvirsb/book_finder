@@ -15,7 +15,7 @@ export default function Navbar({ classname }: NavbarProps): JSX.Element {
 			<Link href="/" className="text-xl font-semibold">
 				Book Finder
 			</Link>
-			<nav className="text-secondary flex items-center gap-[clamp(1rem,1rem+3svw,4rem)]">
+			<nav className="flex items-center gap-[clamp(1rem,1rem+3svw,4rem)] text-secondary-500">
 				{/* TODO create page */}
 				<Link href="recently-viewed" hidden={true}>
 					Recently Viewed
