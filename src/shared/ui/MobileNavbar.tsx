@@ -40,7 +40,7 @@ export default function MobileNavbar(): JSX.Element {
 					{/* TODO create login */}
 					<Link
 						href="login"
-						className="bg-secondary hover:outline-secondary w-full border-none py-3 text-center text-primary-500 hover:bg-transparent hover:font-bold hover:text-secondary-500 hover:outline sm:py-1 sm:px-4"
+						className="hover:outline-secondary w-full border-none bg-secondary-500 py-3 text-center text-primary-500 hover:bg-transparent hover:font-bold hover:text-secondary-500 hover:outline sm:py-1 sm:px-4"
 					>
 						Login
 					</Link>
