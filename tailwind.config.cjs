@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const { Tokens } = require("./.mirrorful/theme_cjs.js");
 module.exports = {
 	content: [
 		"./app/**/*.{js,ts,jsx,tsx}",
@@ -15,6 +16,7 @@ module.exports = {
 				secondary: "#262020",
 				tertiary: "#347596",
 				primary_accent: "#F50063",
+				...Tokens.colors,
 			},
 			backgroundImage: {
 				"books-background": "url('/bg-images/book_background.svg')",
