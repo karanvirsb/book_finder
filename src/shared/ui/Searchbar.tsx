@@ -22,7 +22,7 @@ export default function Searchbar({ submitCb }: ISearchbar): JSX.Element {
 			/>
 			<button
 				type="submit"
-				className="bg-tertiary max-h-[35px] rounded-full py-1 uppercase text-primary-500 sm:max-h-max sm:py-2 sm:px-4"
+				className="max-h-[35px] rounded-full bg-tertiary-500 py-1 uppercase text-primary-500 sm:max-h-max sm:py-2 sm:px-4"
 			>
 				search
 			</button>

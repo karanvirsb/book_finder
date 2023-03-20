@@ -8,7 +8,7 @@ export default function MenuButton({
 }: menuButtonProps): JSX.Element {
 	return (
 		<button
-			className="bg-tertiary fixed right-2 bottom-2 z-50 rounded-full p-4 text-primary-500 opacity-60 drop-shadow-md transition-all duration-300 sm:hidden"
+			className="fixed right-2 bottom-2 z-50 rounded-full bg-tertiary-500 p-4 text-primary-500 opacity-60 drop-shadow-md transition-all duration-300 sm:hidden"
 			onClick={() => {
 				setIsMenuOpen((prev) => !prev);
 			}}
