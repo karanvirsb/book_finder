@@ -15,12 +15,12 @@ export default function MobileNavbar(): JSX.Element {
 			}
 
 			<header
-				className={`fixed bottom-0 left-0 flex w-full flex-col items-center justify-between rounded-t-lg bg-primary pt-4 transition-transform duration-300 sm:hidden ${
+				className={`bg-primary fixed bottom-0 left-0 flex w-full flex-col items-center justify-between rounded-t-lg pt-4 transition-transform duration-300 sm:hidden ${
 					isMenuOpen ? "translate-y-0" : "translate-y-[100%]"
 				}`}
 			>
 				<p className="text-xl font-semibold">Book Finder</p>
-				<nav className="flex w-full flex-col items-center gap-6 pt-4 text-secondary">
+				<nav className="text-secondary flex w-full flex-col items-center gap-6 pt-4">
 					{/* TODO create page */}
 					<Link
 						href="recently-viewed"
@@ -40,7 +40,7 @@ export default function MobileNavbar(): JSX.Element {
 					{/* TODO create login */}
 					<Link
 						href="login"
-						className="w-full border-none bg-secondary py-3 text-center text-primary hover:bg-transparent hover:font-bold hover:text-secondary hover:outline hover:outline-secondary sm:py-1 sm:px-4"
+						className="bg-secondary hover:text-secondary hover:outline-secondary w-full border-none py-3 text-center text-primary-500 hover:bg-transparent hover:font-bold hover:outline sm:py-1 sm:px-4"
 					>
 						Login
 					</Link>
