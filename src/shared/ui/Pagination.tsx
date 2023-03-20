@@ -55,7 +55,7 @@ export default function Pagination({
 					return (
 						<button
 							key={page}
-							className="rounded-md px-2 py-1 text-primary_accent"
+							className="rounded-md px-2 py-1 text-primary_accent-500"
 							disabled
 							onClick={() => {
 								routerCb(page - 1);
@@ -68,7 +68,7 @@ export default function Pagination({
 					return (
 						<button
 							key={page}
-							className="rounded-md px-2 py-1 hover:outline hover:outline-2 hover:outline-secondary"
+							className="hover:outline-secondary rounded-md px-2 py-1 hover:outline hover:outline-2"
 							onClick={() => {
 								routerCb(page - 1);
 							}}
@@ -108,7 +108,7 @@ function PaginationWrapper({
 				className={`rounded-md px-2 py-1 ${
 					firstBtnDisabled
 						? "bg-gray-300 hover:outline-none"
-						: "hover:outline hover:outline-2 hover:outline-secondary"
+						: "hover:outline-secondary hover:outline hover:outline-2"
 				}`}
 				disabled={firstBtnDisabled}
 				onClick={() => {
@@ -126,7 +126,7 @@ function PaginationWrapper({
 				className={`rounded-md px-2 py-1 ${
 					lastBtnDisabled
 						? "bg-gray-300 hover:outline-none"
-						: "hover:outline hover:outline-2 hover:outline-secondary"
+						: "hover:outline-secondary hover:outline hover:outline-2"
 				}`}
 				disabled={lastBtnDisabled}
 				onClick={() => {

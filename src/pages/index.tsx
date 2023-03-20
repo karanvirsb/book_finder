@@ -13,7 +13,7 @@ export default function Home(): JSX.Element {
 					<h1 className="text-center text-[clamp(1.69rem,calc(1.40rem+1.41vw),2.50rem)] font-semibold">
 						Explore the World of{" "}
 						<span className="text-tertiary-500">Books</span> - Find{" "}
-						<span className="text-primary_accent">Yours</span> Now!
+						<span className="text-primary_accent-500">Yours</span> Now!
 					</h1>
 					<Searchbar
 						searchQuery={searchQueryRef}
