@@ -34,7 +34,7 @@ export default function Navbar({ classname }: NavbarProps): JSX.Element {
 				{/* TODO create login */}
 				<Link
 					href="login"
-					className="bg-secondary hover:text-secondary hover:outline-secondary rounded-full border-none py-1 px-4 text-primary-500 hover:bg-transparent hover:font-bold hover:outline"
+					className="hover:text-secondary hover:outline-secondary rounded-full border-none bg-secondary-500 py-1 px-4 text-primary-500 hover:bg-transparent hover:font-bold hover:outline"
 				>
 					Login
 				</Link>
