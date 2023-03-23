@@ -11,7 +11,7 @@ export default function LoginButton(): JSX.Element {
 					void signOut();
 				}}
 			>
-				Signout
+				Logout
 			</button>
 		);
 	}
