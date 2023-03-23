@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import LoginButton from "./loginButton";
 
 interface NavbarProps {
 	classname?: string;
@@ -32,12 +33,13 @@ export default function Navbar({ classname }: NavbarProps): JSX.Element {
 				{/* TODO create about page */}
 				<Link href="about">About</Link>
 				{/* TODO create login */}
-				<Link
+				<LoginButton></LoginButton>
+				{/* <Link
 					href="login"
 					className="hover:text-secondary hover:outline-secondary rounded-full border-none bg-secondary-500 py-1 px-4 text-primary-500 hover:bg-transparent hover:font-bold hover:outline"
 				>
 					Login
-				</Link>
+				</Link> */}
 			</nav>
 		</header>
 	);
