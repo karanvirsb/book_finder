@@ -1,12 +1,15 @@
 import Link from "next/link";
 import React from "react";
 import LoginButton from "./loginButton";
+import { useSession } from "next-auth/react";
 
 interface NavbarProps {
 	classname?: string;
 }
 
 export default function Navbar({ classname }: NavbarProps): JSX.Element {
+	const { data: session } = useSession();
+
 	return (
 		<header
 			className={`hidden items-center justify-between pt-2 sm:flex ${
@@ -18,9 +21,7 @@ export default function Navbar({ classname }: NavbarProps): JSX.Element {
 			</Link>
 			<nav className="flex items-center gap-[clamp(1rem,1rem+3svw,4rem)] text-secondary-500">
 				{/* TODO create page */}
-				<Link href="recently-viewed" hidden={true}>
-					Recently Viewed
-				</Link>
+				{session != null && <Link href="favourites">Favourites</Link>}
 				{/* TODO create search page */}
 				<Link
 					href={{
