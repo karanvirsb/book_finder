@@ -6,7 +6,7 @@ export default function LoginButton(): JSX.Element {
 	if (session != null) {
 		return (
 			<button
-				className="hover:text-secondary hover:outline-secondary rounded-full border-none bg-secondary-500 py-1 px-4 text-primary-500 hover:bg-transparent hover:font-bold hover:outline"
+				className="rounded-full border-none bg-secondary-500 py-1 px-4 text-primary-500 hover:bg-transparent hover:font-bold hover:text-secondary-500 hover:outline hover:outline-secondary-500"
 				onClick={() => {
 					void signOut();
 				}}
@@ -17,7 +17,7 @@ export default function LoginButton(): JSX.Element {
 	}
 	return (
 		<button
-			className="hover:text-secondary hover:outline-secondary rounded-full border-none bg-secondary-500 py-1 px-4 text-primary-500 hover:bg-transparent hover:font-bold hover:outline"
+			className="rounded-full border-none bg-secondary-500 py-1 px-4 text-primary-500 hover:bg-transparent hover:font-bold hover:text-secondary-500 hover:outline hover:outline-secondary-500"
 			onClick={() => {
 				void signIn();
 			}}
